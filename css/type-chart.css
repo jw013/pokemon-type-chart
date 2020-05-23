@@ -6,8 +6,8 @@
   --text-light: rgba(255, 255, 255, 87%);
   --text-dark: rgba(0, 0, 0, 87%);
   --border-color: rgba(0, 0, 0, 60%);
-  --stripe-light: rgba(255, 255, 255, 50%);
-  --stripe-dark: rgba(0, 0, 0, 40%);
+  --stripe-light: rgba(255, 255, 255, 35%);
+  --stripe-dark: rgba(0, 0, 0, 30%);
   --bug: #a8b820;
   --dark: #705848;
   --dragon: #7038F8;
@@ -141,7 +141,7 @@ th[colspan] {
 .type-list > li {
   margin: 1px 1px;
   padding: 0.25ex 0.25em;
-  border-radius: 0.6ex;
+  border-radius: 1ex;
   background-clip: padding-box;
   box-sizing: border-box;
   border: 2px solid transparent;
