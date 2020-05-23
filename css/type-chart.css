@@ -49,7 +49,7 @@ ul {
   /* give left column a bit more space since it has steel */
   grid-template-columns: minmax(auto, 52fr) minmax(auto,48fr);
   grid-template-rows: repeat(9, auto);
-  gap: 1.4em;
+  gap: 1.5em;
   min-height: calc(100vh - 8em);
 }
 
@@ -69,12 +69,15 @@ ul {
 @media (min-width: 85em) {
   .type-charts-list {
     grid-auto-flow: row;
-    grid-template-columns: 32fr 32fr 36fr;
+    grid-template-columns: 30fr 30fr 40fr;
     grid-template-rows: repeat(6, auto);
   }
+}
 
+/* extra extra wide screens */
+@media (min-width: 116em) {
   .main {
-    max-width: 130em;
+    max-width: 108em;
   }
 }
 
@@ -133,10 +136,6 @@ th[colspan] {
   justify-content: center;
   align-content: space-around;
   flex-wrap: wrap;
-}
-
-tbody td {
-  padding: 0.3ex 0;
 }
 
 .type-list > li {
