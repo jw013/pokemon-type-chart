@@ -176,6 +176,7 @@ thead > tr {
   justify-content: center;
   
   font-weight: bold;
+  font-variant-caps: petite-caps;
 
   /* adjustments to avoid covering up existing borders */
   width: calc(5.2rem - 1px); /* 2x col[span] width */
