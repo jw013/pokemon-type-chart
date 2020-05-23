@@ -1,0 +1,262 @@
+/* general */
+
+:root {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+  --text-light: rgba(255, 255, 255, 87%);
+  --text-dark: rgba(0, 0, 0, 87%);
+  --stripe-light: rgba(255, 255, 255, 35%);
+  --stripe-dark: rgba(0, 0, 0, 35%);
+  --bug: #a8b820;
+  --dark: #705848;
+  --dragon: #7038F8;
+  --electric: #F8D030;
+  --fairy: #EE99AC;
+  --fighting: #C03028;
+  --fire: #F08030;
+  --flying: #A890F0;
+  --ghost: #705898;
+  --grass: #78C850;
+  --ground: #E0C068;
+  --ice: #98D8D8;
+  --normal: #A8A878;
+  --poison: #A040A0;
+  --psychic: #F85888;
+  --rock: #B8A038;
+  --steel: #B8B8D0;
+  --water: #6890F0;
+
+  color: rgba(0, 0, 0, 87%);
+}
+
+h1 {
+  text-align: center;
+  font-variant-caps: petite-caps;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* layout */
+
+.type-charts-list {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(auto, 1fr);
+  grid-template-rows: repeat(9, minmax(auto, 1fr));
+  gap: 20px;
+  max-width: 92vw;
+  margin: 0 auto;
+}
+
+@media (min-height: 90em) and (orientation: portrait) {
+  .type-charts-list {
+    max-height: 92vh;
+  }
+}
+
+@media (max-width: 60em) {
+  .type-charts-list {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-flow: row;
+  }
+}
+
+/* individual table layout */
+
+table {
+  border-collapse: collapse;
+  text-align: center;
+  table-layout: fixed;
+  width: 100%;
+  height: 100%;
+  max-width: 40em;
+  margin: 0 auto;
+}
+
+.sideways-lr {
+  writing-mode: vertical-rl;
+  transform: rotate(0.5turn);
+}
+
+th,td {
+  box-sizing: border-box;
+  border: 1px solid black;
+  padding: 0;
+}
+
+th[rowspan] {
+  padding: 0.3em 0;
+  font-size: smaller;
+  border-right: hidden;
+}
+
+th[colspan] {
+  font-size: smaller;
+  border-bottom: hidden;
+}
+
+.type-list {
+  font-variant-caps: petite-caps;
+  /* font-size: smaller; */
+  display: flex;
+  justify-content: center;
+  align-content: space-around;
+  flex-wrap: wrap;
+}
+
+tbody td {
+  padding: 0.3ex 0;
+}
+
+.type-list > li {
+  flex: 0 1 min-content;
+  margin: 1px 1px;
+  padding: 0.2ex 0.2em;
+  border-radius: 0.6ex;
+}
+
+/* Display the caption inside the first table cell which is otherwise empty.
+ * - position: absolute on caption contents to make caption 0 size
+ * - fixed width and height values ensure "caption" is same size as first cell for easy alignment
+ */
+ .relative {
+  position: relative;
+}
+
+col[span] {
+  width: 2.6rem;
+}
+
+thead > tr {
+  height: 1.3rem;
+}
+
+.caption-container {
+  position: absolute;
+  width: 5.2rem; /* 2x col[span] width */
+  height: 2.6rem; /* 2x thead tr height */
+
+  /* add top left border since we covered up the border on the original table */
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-right: none;
+  border-bottom: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-weight: bold;
+}
+
+/* colors and content styling */
+
+.nn {
+  color: rgba(0, 0, 0, 38%);
+}
+
+.bug, .electric, .fairy, .fire, .flying, .grass, 
+.ground, .ice, .normal, .psychic, .rock, .steel, .water {
+  color: var(--text-dark);
+  --stripe: var(--stripe-light);
+}
+
+.dark, .dragon, .fighting, .ghost, .poison {
+  color: var(--text-light);
+  --stripe: var(--stripe-dark);
+}
+
+.immune {
+  /* box-sizing: border-box; */
+  /* border: 2px solid black; */
+  /* border-radius: 4px; */
+  background-image: repeating-linear-gradient(135deg, 
+    var(--stripe), 
+    var(--stripe) 0.5em, 
+    transparent 0.5em, 
+    transparent 1em);
+}
+
+.bug {
+  background-color: var(--bug);
+}
+
+.dark {
+  background-color: var(--dark);
+}
+
+.dragon {
+  background-color: var(--dragon);
+}
+
+.electric {
+  background-color: var(--electric);
+}
+
+.fairy {
+  background-color: var(--fairy);
+}
+
+.fighting {
+  background-color: var(--fighting);
+}
+
+.fire {
+  background-color: var(--fire);
+}
+
+.flying {
+  background-color: var(--flying);
+}
+
+.ghost {
+  background-color: var(--ghost);
+}
+
+.grass {
+  background-color: var(--grass);
+}
+
+.ground {
+  background-color: var(--ground);
+}
+
+.ice {
+  background-color: var(--ice);
+}
+
+.normal {
+  background-color: var(--normal);
+}
+
+.poison {
+  background-color: var(--poison);
+}
+
+.psychic {
+  background-color: var(--psychic);
+}
+
+.rock {
+  background-color: var(--rock);
+}
+
+.steel {
+  background-color: var(--steel);
+}
+
+.water {
+  background-color: var(--water);
+}
+
+footer {
+  margin-top: 1ex;
+  font-size: smaller;
+  padding-left: 2em;
+  margin-left: 4vw;
+}

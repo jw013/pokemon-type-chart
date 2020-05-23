@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/type-chart.css">
+  <title>Pokémon Type Effectiveness</title>
+</head>
+<body>
+  <h1>Pokémon Type Effectiveness</h1>
+  <ul class="type-charts-list">
+    <li>      
+      <table>
+        <caption>
+          <div class="relative">
+            <div class="caption-container normal">
+              <span class="caption">Normal</span>
+            </div>
+          </div>
+        </caption>
+        <colgroup>
+          <col span="2">
+          <col class="resist">
+          <col class="neutral">
+          <col class="super-effective">
+        </colgroup>
+        <thead>
+          <tr><td rowspan="2" colspan="2"></td><th scope="colgroup" colspan="3">Damage To</th></tr>
+          <tr><th scope="col">-</th><th scope="col">1</th><th scope="col">+</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="rowgroup" rowspan="3"><span class="sideways-lr">Damage From</span></th>
+              <th scope="row">-</th>
+              <td><ul class="type-list"><li class="ghost immune"><span>GHO<span class="immune-symbol">*</span></span></li></ul></td>
+              <td></td>
+              <td></td>
+          </tr>
+          <tr><th scope="row">1</th>
+              <td><ul class="type-list"><li class="rock"><span>ROCK</span></li><li class="steel"><span>STL</span></li></ul></td>
+              <td class="nn"><span class="nn-count">[…14…]</span></td>
+              <td></td>
+          </tr>
+          <tr><th scope="row">+</th>
+              <td></td>
+              <td><ul class="type-list"><li class="fighting"><span>FTG</span></li></ul></td>
+              <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>      
+      <table>
+        <caption>
+          <div class="relative">
+            <div class="caption-container fighting">
+              <span class="caption">Fighting</span>
+            </div>
+          </div>
+        </caption>
+        <colgroup>
+          <col span="2">
+          <col class="resist">
+          <col class="neutral">
+          <col class="super-effective">
+        </colgroup>
+        <thead>
+          <tr><td rowspan="2" colspan="2"></td><th scope="colgroup" colspan="3">Damage To</th></tr>
+          <tr><th scope="col">-</th><th scope="col">1</th><th scope="col">+</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="rowgroup" rowspan="3"><span class="sideways-lr">Damage From</span></th>
+              <th scope="row">-</th>
+              <td><ul class="type-list"><li class="bug"><span>BUG</span></li></ul></td>
+              <td></td>
+              <td><ul class="type-list"><li class="rock"><span>ROCK</span></li><li class="dark"><span>DARK</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">1</th>
+              <td><ul class="type-list"><li class="ghost immune"><span>GHO<span class="immune-symbol">*</span></span></li><li class="poison"><span>PSN</span></li></ul></td>
+              <td class="nn"><span class="nn-count">[…7…]</span></td>
+              <td><ul class="type-list"><li class="normal"><span>NRM</span></li><li class="steel"><span>STL</span></li><li class="ice"><span>ICE</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">+</th>
+              <td><ul class="type-list"><li class="flying"><span>FLY</span></li><li class="psychic"><span>PSY</span></li><li class="fairy"><span>FRY</span></li></ul></td>
+              <td></td>
+              <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>      
+      <table>
+        <caption>
+          <div class="relative">
+            <div class="caption-container flying">
+              <span class="caption">Flying</span>
+            </div>
+          </div>
+        </caption>
+        <colgroup>
+          <col span="2">
+          <col class="resist">
+          <col class="neutral">
+          <col class="super-effective">
+        </colgroup>
+        <thead>
+          <tr><td rowspan="2" colspan="2"></td><th scope="colgroup" colspan="3">Damage To</th></tr>
+          <tr><th scope="col">-</th><th scope="col">1</th><th scope="col">+</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="rowgroup" rowspan="3"><span class="sideways-lr">Damage From</span></th>
+              <th scope="row">-</th>
+              <td></td>
+              <td><ul class="type-list"><li class="ground immune"><span>GRD<span class="immune-symbol">*</span></span></li></ul></td>
+              <td><ul class="type-list"><li class="fighting"><span>FTG</span></li><li class="bug"><span>BUG</span></li><li class="grass"><span>GRS</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">1</th>
+              <td><ul class="type-list"><li class="steel"><span>STL</span></li></ul></td>
+              <td class="nn"><span class="nn-count">[…10…]</span></td>
+              <td></td>
+          </tr>
+          <tr><th scope="row">+</th>
+              <td><ul class="type-list"><li class="rock"><span>ROCK</span></li><li class="electric"><span>ELEC</span></li></ul></td>
+              <td><ul class="type-list"><li class="ice"><span>ICE</span></li></ul></td>
+              <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>      
+      <table>
+        <caption>
+          <div class="relative">
+            <div class="caption-container poison">
+              <span class="caption">Poison</span>
+            </div>
+          </div>
+        </caption>
+        <colgroup>
+          <col span="2">
+          <col class="resist">
+          <col class="neutral">
+          <col class="super-effective">
+        </colgroup>
+        <thead>
+          <tr><td rowspan="2" colspan="2"></td><th scope="colgroup" colspan="3">Damage To</th></tr>
+          <tr><th scope="col">-</th><th scope="col">1</th><th scope="col">+</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="rowgroup" rowspan="3"><span class="sideways-lr">Damage From</span></th>
+              <th scope="row">-</th>
+              <td><ul class="type-list"><li class="poison"><span>PSN</span></li></ul></td>
+              <td><ul class="type-list"><li class="fighting"><span>FTG</span></li><li class="bug"><span>BUG</span></li></ul></td>
+              <td><ul class="type-list"><li class="grass"><span>GRS</span></li><li class="fairy"><span>FRY</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">1</th>
+              <td><ul class="type-list"><li class="steel immune"><span>STL<span class="immune-symbol">*</span></span></li><li class="rock"><span>ROCK</span></li><li class="ghost"><span>GHO</span></li></ul></td>
+              <td class="nn"><span class="nn-count">[…8…]</span></td>
+              <td></td>
+          </tr>
+          <tr><th scope="row">+</th>
+              <td><ul class="type-list"><li class="ground"><span>GRD</span></li></ul></td>
+              <td><ul class="type-list"><li class="psychic"><span>PSY</span></li></ul></td>
+              <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>      
+      <table>
+        <caption>
+          <div class="relative">
+            <div class="caption-container ground">
+              <span class="caption">Ground</span>
+            </div>
+          </div>
+        </caption>
+        <colgroup>
+          <col span="2">
+          <col class="resist">
+          <col class="neutral">
+          <col class="super-effective">
+        </colgroup>
+        <thead>
+          <tr><td rowspan="2" colspan="2"></td><th scope="colgroup" colspan="3">Damage To</th></tr>
+          <tr><th scope="col">-</th><th scope="col">1</th><th scope="col">+</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="rowgroup" rowspan="3"><span class="sideways-lr">Damage From</span></th>
+              <th scope="row">-</th>
+              <td></td>
+              <td></td>
+              <td><ul class="type-list"><li class="electric immune"><span>ELEC<span class="immune-symbol">*</span></span></li><li class="poison"><span>PSN</span></li><li class="rock"><span>ROCK</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">1</th>
+              <td><ul class="type-list"><li class="flying immune"><span>FLY<span class="immune-symbol">*</span></span></li><li class="bug"><span>BUG</span></li></ul></td>
+              <td class="nn"><span class="nn-count">[…8…]</span></td>
+              <td><ul class="type-list"><li class="steel"><span>STL</span></li><li class="fire"><span>FIRE</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">+</th>
+              <td><ul class="type-list"><li class="grass"><span>GRS</span></li></ul></td>
+              <td><ul class="type-list"><li class="water"><span>WTR</span></li><li class="ice"><span>ICE</span></li></ul></td>
+              <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>      
+      <table>
+        <caption>
+          <div class="relative">
+            <div class="caption-container rock">
+              <span class="caption">Rock</span>
+            </div>
+          </div>
+        </caption>
+        <colgroup>
+          <col span="2">
+          <col class="resist">
+          <col class="neutral">
+          <col class="super-effective">
+        </colgroup>
+        <thead>
+          <tr><td rowspan="2" colspan="2"></td><th scope="colgroup" colspan="3">Damage To</th></tr>
+          <tr><th scope="col">-</th><th scope="col">1</th><th scope="col">+</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="rowgroup" rowspan="3"><span class="sideways-lr">Damage From</span></th>
+              <th scope="row">-</th>
+              <td></td>
+              <td><ul class="type-list"><li class="normal"><span>NRM</span></li><li class="poison"><span>PSN</span></li></ul></td>
+              <td><ul class="type-list"><li class="flying"><span>FLY</span></li><li class="fire"><span>FIRE</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">1</th>
+              <td></td>
+              <td class="nn"><span class="nn-count">[…7…]</span></td>
+              <td><ul class="type-list"><li class="bug"><span>BUG</span></li><li class="ice"><span>ICE</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">+</th>
+              <td><ul class="type-list"><li class="fighting"><span>FTG</span></li><li class="ground"><span>GRD</span></li><li class="steel"><span>STL</span></li></ul></td>
+              <td><ul class="type-list"><li class="water"><span>WTR</span></li><li class="grass"><span>GRS</span></li></ul></td>
+              <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>      
+      <table>
+        <caption>
+          <div class="relative">
+            <div class="caption-container bug">
+              <span class="caption">Bug</span>
+            </div>
+          </div>
+        </caption>
+        <colgroup>
+          <col span="2">
+          <col class="resist">
+          <col class="neutral">
+          <col class="super-effective">
+        </colgroup>
+        <thead>
+          <tr><td rowspan="2" colspan="2"></td><th scope="colgroup" colspan="3">Damage To</th></tr>
+          <tr><th scope="col">-</th><th scope="col">1</th><th scope="col">+</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="rowgroup" rowspan="3"><span class="sideways-lr">Damage From</span></th>
+              <th scope="row">-</th>
+              <td><ul class="type-list"><li class="fighting"><span>FTG</span></li></ul></td>
+              <td><ul class="type-list"><li class="ground"><span>GRD</span></li></ul></td>
+              <td><ul class="type-list"><li class="grass"><span>GRS</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">1</th>
+              <td><ul class="type-list"><li class="poison"><span>PSN</span></li><li class="ghost"><span>GHO</span></li><li class="steel"><span>STL</span></li><li class="fairy"><span>FRY</span></li></ul></td>
+              <td class="nn"><span class="nn-count">[…6…]</span></td>
+              <td><ul class="type-list"><li class="psychic"><span>PSY</span></li><li class="dark"><span>DARK</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">+</th>
+              <td><ul class="type-list"><li class="flying"><span>FLY</span></li><li class="fire"><span>FIRE</span></li></ul></td>
+              <td><ul class="type-list"><li class="rock"><span>ROCK</span></li></ul></td>
+              <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>      
+      <table>
+        <caption>
+          <div class="relative">
+            <div class="caption-container ghost">
+              <span class="caption">Ghost</span>
+            </div>
+          </div>
+        </caption>
+        <colgroup>
+          <col span="2">
+          <col class="resist">
+          <col class="neutral">
+          <col class="super-effective">
+        </colgroup>
+        <thead>
+          <tr><td rowspan="2" colspan="2"></td><th scope="colgroup" colspan="3">Damage To</th></tr>
+          <tr><th scope="col">-</th><th scope="col">1</th><th scope="col">+</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="rowgroup" rowspan="3"><span class="sideways-lr">Damage From</span></th>
+              <th scope="row">-</th>
+              <td><ul class="type-list"><li class="normal immune"><span>NRM<span class="immune-symbol">*</span></span></li></ul></td>
+              <td><ul class="type-list"><li class="fighting immune"><span>FTG<span class="immune-symbol">*</span></span></li><li class="poison"><span>PSN</span></li><li class="bug"><span>BUG</span></li></ul></td>
+              <td></td>
+          </tr>
+          <tr><th scope="row">1</th>
+              <td></td>
+              <td class="nn"><span class="nn-count">[…11…]</span></td>
+              <td><ul class="type-list"><li class="psychic"><span>PSY</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">+</th>
+              <td><ul class="type-list"><li class="dark"><span>DARK</span></li></ul></td>
+              <td></td>
+              <td><ul class="type-list"><li class="ghost"><span>GHO</span></li></ul></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>      
+      <table>
+        <caption>
+          <div class="relative">
+            <div class="caption-container steel">
+              <span class="caption">Steel</span>
+            </div>
+          </div>
+        </caption>
+        <colgroup>
+          <col span="2">
+          <col class="resist">
+          <col class="neutral">
+          <col class="super-effective">
+        </colgroup>
+        <thead>
+          <tr><td rowspan="2" colspan="2"></td><th scope="colgroup" colspan="3">Damage To</th></tr>
+          <tr><th scope="col">-</th><th scope="col">1</th><th scope="col">+</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="rowgroup" rowspan="3"><span class="sideways-lr">Damage From</span></th>
+              <th scope="row">-</th>
+              <td><ul class="type-list"><li class="steel"><span>STL</span></li></ul></td>
+              <td><ul class="type-list"><li class="poison immune"><span>PSN<span class="immune-symbol">*</span></span></li><li class="normal"><span>NRM</span></li><li class="flying"><span>FLY</span></li><li class="bug"><span>BUG</span></li><li class="grass"><span>GRS</span></li><li class="psychic"><span>PSY</span></li><li class="dragon"><span>DRG</span></li></ul></td>
+              <td><ul class="type-list"><li class="rock"><span>ROCK</span></li><li class="ice"><span>ICE</span></li><li class="fairy"><span>FRY</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">1</th>
+              <td><ul class="type-list"><li class="water"><span>WTR</span></li><li class="electric"><span>ELEC</span></li></ul></td>
+              <td class="nn"><ul class="type-list"><li class="ghost"><span>GHO</span></li><li class="dark"><span>DARK</span></li></ul></td>
+              <td></td>
+          </tr>
+          <tr><th scope="row">+</th>
+              <td><ul class="type-list"><li class="fire"><span>FIRE</span></li></ul></td>
+              <td><ul class="type-list"><li class="fighting"><span>FTG</span></li><li class="ground"><span>GRD</span></li></ul></td>
+              <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>      
+      <table>
+        <caption>
+          <div class="relative">
+            <div class="caption-container fire">
+              <span class="caption">Fire</span>
+            </div>
+          </div>
+        </caption>
+        <colgroup>
+          <col span="2">
+          <col class="resist">
+          <col class="neutral">
+          <col class="super-effective">
+        </colgroup>
+        <thead>
+          <tr><td rowspan="2" colspan="2"></td><th scope="colgroup" colspan="3">Damage To</th></tr>
+          <tr><th scope="col">-</th><th scope="col">1</th><th scope="col">+</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="rowgroup" rowspan="3"><span class="sideways-lr">Damage From</span></th>
+              <th scope="row">-</th>
+              <td><ul class="type-list"><li class="fire"><span>FIRE</span></li></ul></td>
+              <td><ul class="type-list"><li class="fairy"><span>FRY</span></li></ul></td>
+              <td><ul class="type-list"><li class="bug"><span>BUG</span></li><li class="steel"><span>STL</span></li><li class="grass"><span>GRS</span></li><li class="ice"><span>ICE</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">1</th>
+              <td><ul class="type-list"><li class="dragon"><span>DRG</span></li></ul></td>
+              <td class="nn"><span class="nn-count">[…8…]</span></td>
+              <td></td>
+          </tr>
+          <tr><th scope="row">+</th>
+              <td><ul class="type-list"><li class="rock"><span>ROCK</span></li><li class="water"><span>WTR</span></li></ul></td>
+              <td><ul class="type-list"><li class="ground"><span>GRD</span></li></ul></td>
+              <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>      
+      <table>
+        <caption>
+          <div class="relative">
+            <div class="caption-container water">
+              <span class="caption">Water</span>
+            </div>
+          </div>
+        </caption>
+        <colgroup>
+          <col span="2">
+          <col class="resist">
+          <col class="neutral">
+          <col class="super-effective">
+        </colgroup>
+        <thead>
+          <tr><td rowspan="2" colspan="2"></td><th scope="colgroup" colspan="3">Damage To</th></tr>
+          <tr><th scope="col">-</th><th scope="col">1</th><th scope="col">+</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="rowgroup" rowspan="3"><span class="sideways-lr">Damage From</span></th>
+              <th scope="row">-</th>
+              <td><ul class="type-list"><li class="water"><span>WTR</span></li></ul></td>
+              <td><ul class="type-list"><li class="steel"><span>STL</span></li><li class="ice"><span>ICE</span></li></ul></td>
+              <td><ul class="type-list"><li class="fire"><span>FIRE</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">1</th>
+              <td><ul class="type-list"><li class="dragon"><span>DRG</span></li></ul></td>
+              <td class="nn"><span class="nn-count">[…9…]</span></td>
+              <td><ul class="type-list"><li class="ground"><span>GRD</span></li><li class="rock"><span>ROCK</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">+</th>
+              <td><ul class="type-list"><li class="grass"><span>GRS</span></li></ul></td>
+              <td><ul class="type-list"><li class="electric"><span>ELEC</span></li></ul></td>
+              <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>      
+      <table>
+        <caption>
+          <div class="relative">
+            <div class="caption-container grass">
+              <span class="caption">Grass</span>
+            </div>
+          </div>
+        </caption>
+        <colgroup>
+          <col span="2">
+          <col class="resist">
+          <col class="neutral">
+          <col class="super-effective">
+        </colgroup>
+        <thead>
+          <tr><td rowspan="2" colspan="2"></td><th scope="colgroup" colspan="3">Damage To</th></tr>
+          <tr><th scope="col">-</th><th scope="col">1</th><th scope="col">+</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="rowgroup" rowspan="3"><span class="sideways-lr">Damage From</span></th>
+              <th scope="row">-</th>
+              <td><ul class="type-list"><li class="grass"><span>GRS</span></li></ul></td>
+              <td><ul class="type-list"><li class="electric"><span>ELEC</span></li></ul></td>
+              <td><ul class="type-list"><li class="ground"><span>GRD</span></li><li class="water"><span>WTR</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">1</th>
+              <td><ul class="type-list"><li class="steel"><span>STL</span></li><li class="dragon"><span>DRG</span></li></ul></td>
+              <td class="nn"><span class="nn-count">[…6…]</span></td>
+              <td><ul class="type-list"><li class="rock"><span>ROCK</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">+</th>
+              <td><ul class="type-list"><li class="flying"><span>FLY</span></li><li class="poison"><span>PSN</span></li><li class="bug"><span>BUG</span></li><li class="fire"><span>FIRE</span></li></ul></td>
+              <td><ul class="type-list"><li class="ice"><span>ICE</span></li></ul></td>
+              <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>      
+      <table>
+        <caption>
+          <div class="relative">
+            <div class="caption-container electric">
+              <span class="caption">Electric</span>
+            </div>
+          </div>
+        </caption>
+        <colgroup>
+          <col span="2">
+          <col class="resist">
+          <col class="neutral">
+          <col class="super-effective">
+        </colgroup>
+        <thead>
+          <tr><td rowspan="2" colspan="2"></td><th scope="colgroup" colspan="3">Damage To</th></tr>
+          <tr><th scope="col">-</th><th scope="col">1</th><th scope="col">+</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="rowgroup" rowspan="3"><span class="sideways-lr">Damage From</span></th>
+              <th scope="row">-</th>
+              <td><ul class="type-list"><li class="electric"><span>ELEC</span></li></ul></td>
+              <td><ul class="type-list"><li class="steel"><span>STL</span></li></ul></td>
+              <td><ul class="type-list"><li class="flying"><span>FLY</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">1</th>
+              <td><ul class="type-list"><li class="grass"><span>GRS</span></li><li class="dragon"><span>DRG</span></li></ul></td>
+              <td class="nn"><span class="nn-count">[…11…]</span></td>
+              <td><ul class="type-list"><li class="water"><span>WTR</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">+</th>
+              <td><ul class="type-list"><li class="ground immune"><span>GRD<span class="immune-symbol">*</span></span></li></ul></td>
+              <td></td>
+              <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>      
+      <table>
+        <caption>
+          <div class="relative">
+            <div class="caption-container psychic">
+              <span class="caption">Psychic</span>
+            </div>
+          </div>
+        </caption>
+        <colgroup>
+          <col span="2">
+          <col class="resist">
+          <col class="neutral">
+          <col class="super-effective">
+        </colgroup>
+        <thead>
+          <tr><td rowspan="2" colspan="2"></td><th scope="colgroup" colspan="3">Damage To</th></tr>
+          <tr><th scope="col">-</th><th scope="col">1</th><th scope="col">+</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="rowgroup" rowspan="3"><span class="sideways-lr">Damage From</span></th>
+              <th scope="row">-</th>
+              <td><ul class="type-list"><li class="psychic"><span>PSY</span></li></ul></td>
+              <td></td>
+              <td><ul class="type-list"><li class="fighting"><span>FTG</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">1</th>
+              <td><ul class="type-list"><li class="steel"><span>STL</span></li></ul></td>
+              <td class="nn"><span class="nn-count">[…11…]</span></td>
+              <td><ul class="type-list"><li class="poison"><span>PSN</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">+</th>
+              <td><ul class="type-list"><li class="dark immune"><span>DARK<span class="immune-symbol">*</span></span></li></ul></td>
+              <td><ul class="type-list"><li class="bug"><span>BUG</span></li><li class="ghost"><span>GHO</span></li></ul></td>
+              <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>      
+      <table>
+        <caption>
+          <div class="relative">
+            <div class="caption-container ice">
+              <span class="caption">Ice</span>
+            </div>
+          </div>
+        </caption>
+        <colgroup>
+          <col span="2">
+          <col class="resist">
+          <col class="neutral">
+          <col class="super-effective">
+        </colgroup>
+        <thead>
+          <tr><td rowspan="2" colspan="2"></td><th scope="colgroup" colspan="3">Damage To</th></tr>
+          <tr><th scope="col">-</th><th scope="col">1</th><th scope="col">+</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="rowgroup" rowspan="3"><span class="sideways-lr">Damage From</span></th>
+              <th scope="row">-</th>
+              <td><ul class="type-list"><li class="ice"><span>ICE</span></li></ul></td>
+              <td></td>
+              <td></td>
+          </tr>
+          <tr><th scope="row">1</th>
+              <td><ul class="type-list"><li class="water"><span>WTR</span></li></ul></td>
+              <td class="nn"><span class="nn-count">[…8…]</span></td>
+              <td><ul class="type-list"><li class="flying"><span>FLY</span></li><li class="ground"><span>GRD</span></li><li class="grass"><span>GRS</span></li><li class="dragon"><span>DRG</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">+</th>
+              <td><ul class="type-list"><li class="steel"><span>STL</span></li><li class="fire"><span>FIRE</span></li></ul></td>
+              <td><ul class="type-list"><li class="fighting"><span>FTG</span></li><li class="rock"><span>ROCK</span></li></ul></td>
+              <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>      
+      <table>
+        <caption>
+          <div class="relative">
+            <div class="caption-container dragon">
+              <span class="caption">Dragon</span>
+            </div>
+          </div>
+        </caption>
+        <colgroup>
+          <col span="2">
+          <col class="resist">
+          <col class="neutral">
+          <col class="super-effective">
+        </colgroup>
+        <thead>
+          <tr><td rowspan="2" colspan="2"></td><th scope="colgroup" colspan="3">Damage To</th></tr>
+          <tr><th scope="col">-</th><th scope="col">1</th><th scope="col">+</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="rowgroup" rowspan="3"><span class="sideways-lr">Damage From</span></th>
+              <th scope="row">-</th>
+              <td></td>
+              <td><ul class="type-list"><li class="fire"><span>FIRE</span></li><li class="water"><span>WTR</span></li><li class="grass"><span>GRS</span></li><li class="electric"><span>ELEC</span></li></ul></td>
+              <td></td>
+          </tr>
+          <tr><th scope="row">1</th>
+              <td><ul class="type-list"><li class="steel"><span>STL</span></li></ul></td>
+              <td class="nn"><span class="nn-count">[…10…]</span></td>
+              <td></td>
+          </tr>
+          <tr><th scope="row">+</th>
+              <td><ul class="type-list"><li class="fairy immune"><span>FRY<span class="immune-symbol">*</span></span></li></ul></td>
+              <td><ul class="type-list"><li class="ice"><span>ICE</span></li></ul></td>
+              <td><ul class="type-list"><li class="dragon"><span>DRG</span></li></ul></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>      
+      <table>
+        <caption>
+          <div class="relative">
+            <div class="caption-container dark">
+              <span class="caption">Dark</span>
+            </div>
+          </div>
+        </caption>
+        <colgroup>
+          <col span="2">
+          <col class="resist">
+          <col class="neutral">
+          <col class="super-effective">
+        </colgroup>
+        <thead>
+          <tr><td rowspan="2" colspan="2"></td><th scope="colgroup" colspan="3">Damage To</th></tr>
+          <tr><th scope="col">-</th><th scope="col">1</th><th scope="col">+</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="rowgroup" rowspan="3"><span class="sideways-lr">Damage From</span></th>
+              <th scope="row">-</th>
+              <td><ul class="type-list"><li class="dark"><span>DARK</span></li></ul></td>
+              <td></td>
+              <td><ul class="type-list"><li class="psychic immune"><span>PSY<span class="immune-symbol">*</span></span></li><li class="ghost"><span>GHO</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">1</th>
+              <td></td>
+              <td class="nn"><span class="nn-count">[…12…]</span></td>
+              <td></td>
+          </tr>
+          <tr><th scope="row">+</th>
+              <td><ul class="type-list"><li class="fighting"><span>FTG</span></li><li class="fairy"><span>FRY</span></li></ul></td>
+              <td><ul class="type-list"><li class="bug"><span>BUG</span></li></ul></td>
+              <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>      
+      <table>
+        <caption>
+          <div class="relative">
+            <div class="caption-container fairy">
+              <span class="caption">Fairy</span>
+            </div>
+          </div>
+        </caption>
+        <colgroup>
+          <col span="2">
+          <col class="resist">
+          <col class="neutral">
+          <col class="super-effective">
+        </colgroup>
+        <thead>
+          <tr><td rowspan="2" colspan="2"></td><th scope="colgroup" colspan="3">Damage To</th></tr>
+          <tr><th scope="col">-</th><th scope="col">1</th><th scope="col">+</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="rowgroup" rowspan="3"><span class="sideways-lr">Damage From</span></th>
+              <th scope="row">-</th>
+              <td></td>
+              <td><ul class="type-list"><li class="bug"><span>BUG</span></li></ul></td>
+              <td><ul class="type-list"><li class="dragon immune"><span>DRG<span class="immune-symbol">*</span></span></li><li class="fighting"><span>FTG</span></li><li class="dark"><span>DARK</span></li></ul></td>
+          </tr>
+          <tr><th scope="row">1</th>
+              <td><ul class="type-list"><li class="fire"><span>FIRE</span></li></ul></td>
+              <td class="nn"><span class="nn-count">[…11…]</span></td>
+              <td></td>
+          </tr>
+          <tr><th scope="row">+</th>
+              <td><ul class="type-list"><li class="poison"><span>PSN</span></li><li class="steel"><span>STL</span></li></ul></td>
+              <td></td>
+              <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+  </ul>
+  <footer><p>* immunity / double resistance</p></footer>
+</body>
+</html>
