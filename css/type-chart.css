@@ -47,14 +47,14 @@ ul {
   display: grid;
   grid-auto-flow: column;
   /* give left column a bit more space since it has steel */
-  grid-template-columns: minmax(auto, 52fr) minmax(auto,48fr);
+  grid-template-columns: minmax(auto, 54fr) minmax(auto, 46fr);
   grid-template-rows: repeat(9, auto);
   gap: 1.5em;
   min-height: calc(100vh - 8em);
 }
 
 .main {
-  max-width: 92vw;
+  max-width: calc(100vw - 4em);
   margin-left: auto;
   margin-right: auto;
 }
@@ -87,6 +87,7 @@ ul {
     grid-auto-flow: row;
     grid-template-columns: 1fr;
     grid-template-rows: none;
+    gap: 1em;
   }
 
   .main {
