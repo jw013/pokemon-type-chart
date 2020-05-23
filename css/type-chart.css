@@ -181,7 +181,12 @@ thead > tr {
   width: calc(5.2rem - 1px); /* 2x col[span] width */
   height: calc(2.6rem - 1px); /* 2x thead tr height */
   margin: 1px 0 0 1px;
-}  
+}
+
+/* special case: make middle column on steel wider because it has more resistances */
+.steel-table col.neutral {
+  width: 38%;
+}
 
 /* colors and content styling */
 
