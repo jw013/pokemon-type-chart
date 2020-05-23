@@ -5,6 +5,7 @@
 
   --text-light: rgba(255, 255, 255, 87%);
   --text-dark: rgba(0, 0, 0, 87%);
+  --border-color: rgba(0, 0, 0, 60%);
   --stripe-light: rgba(255, 255, 255, 50%);
   --stripe-dark: rgba(0, 0, 0, 40%);
   --bug: #a8b820;
@@ -45,24 +46,50 @@ ul {
 .type-charts-list {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(auto, 54fr) minmax(auto,46fr);
-  grid-template-rows: repeat(9, minmax(auto, 1fr));
-  gap: 20px;
-  max-width: 92vw;
-  margin: 0 auto;
+  /* give left column a bit more space since it has steel */
+  grid-template-columns: minmax(auto, 52fr) minmax(auto,48fr);
+  grid-template-rows: repeat(9, auto);
+  gap: 1.4em;
+  min-height: calc(100vh - 8em);
 }
 
-@media (min-height: 90em) and (orientation: portrait) {
+.main {
+  max-width: 92vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footnote {
+  margin-top: 1ex;
+  font-size: smaller;
+  padding-left: 1em;
+}
+
+/* extra-wide screens */
+@media (min-width: 85em) {
   .type-charts-list {
-    max-height: 92vh;
+    grid-auto-flow: row;
+    grid-template-columns: 32fr 32fr 36fr;
+    grid-template-rows: repeat(6, auto);
+  }
+
+  .main {
+    max-width: 130em;
   }
 }
 
-@media (max-width: 60em) {
+/* single column layout for narrower screens */
+@media (max-width: 55em) {
   .type-charts-list {
+    grid-auto-flow: row;
     grid-template-columns: 1fr;
     grid-template-rows: none;
-    grid-auto-flow: row;
+  }
+
+  .main {
+    max-width: none;
+    margin-left: 1em;
+    margin-right: 1em;
   }
 }
 
@@ -74,7 +101,7 @@ table {
   table-layout: fixed;
   width: 100%;
   height: 100%;
-  max-width: 40em;
+  max-width: 42em; /* just enough for steel resistances to fit in 2 rows */
   margin: 0 auto;
 }
 
@@ -85,7 +112,7 @@ table {
 
 th,td {
   box-sizing: border-box;
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   padding: 0;
 }
 
@@ -102,7 +129,6 @@ th[colspan] {
 
 .type-list {
   font-variant-caps: petite-caps;
-  /* font-size: smaller; */
   display: flex;
   justify-content: center;
   align-content: space-around;
@@ -114,12 +140,16 @@ tbody td {
 }
 
 .type-list > li {
-  flex: 0 1 min-content;
   margin: 1px 1px;
   padding: 0.25ex 0.25em;
   border-radius: 0.6ex;
   background-clip: padding-box;
   box-sizing: border-box;
+  border: 2px solid transparent;
+}
+
+.type-list > .immune {
+  border: 2px dashed black;
 }
 
 /* Display the caption inside the first table cell which is otherwise empty.
@@ -140,20 +170,18 @@ thead > tr {
 
 .caption-container {
   position: absolute;
-  width: 5.2rem; /* 2x col[span] width */
-  height: 2.6rem; /* 2x thead tr height */
-
-  /* add top left border since we covered up the border on the original table */
-  box-sizing: border-box;
-  border: 1px solid black;
-  border-style: solid none none solid;
 
   display: flex;
   align-items: center;
   justify-content: center;
   
   font-weight: bold;
-}
+
+  /* adjustments to avoid covering up existing borders */
+  width: calc(5.2rem - 1px); /* 2x col[span] width */
+  height: calc(2.6rem - 1px); /* 2x thead tr height */
+  margin: 1px 0 0 1px;
+}  
 
 /* colors and content styling */
 
@@ -173,8 +201,7 @@ thead > tr {
 }
 
 .immune {
-  border: 2px dashed black;
-  background-image: repeating-linear-gradient(135deg, 
+  background-image: repeating-linear-gradient(130deg, 
     var(--stripe), 
     var(--stripe) 0.5em, 
     transparent 0.5em, 
@@ -251,11 +278,4 @@ thead > tr {
 
 .water {
   background-color: var(--water);
-}
-
-footer {
-  margin-top: 1ex;
-  font-size: smaller;
-  padding-left: 2em;
-  margin-left: 4vw;
 }
