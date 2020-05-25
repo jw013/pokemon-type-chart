@@ -156,7 +156,7 @@ th[colspan] {
  * - position: absolute on caption contents
  * - fix width and height values on first cell for easy alignment
  */
- .relative {
+.relative {
   position: relative;
 }
 
