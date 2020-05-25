@@ -184,7 +184,7 @@ thead > tr {
 
 /* special case: make middle column on steel wider because it has more resistances */
 .steel-table col.neutral {
-  width: 38%;
+  width: 37%;
 }
 
 /* colors and content styling */
