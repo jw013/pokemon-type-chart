@@ -5,7 +5,7 @@
 
   --text-light: rgba(255, 255, 255, 87%);
   --text-dark: rgba(0, 0, 0, 87%);
-  --border-color: rgba(0, 0, 0, 60%);
+  --border-color: rgba(40%, 40%, 40%, 1);
   --stripe-light: rgba(255, 255, 255, 35%);
   --stripe-dark: rgba(0, 0, 0, 30%);
   --bug: #a8b820;
