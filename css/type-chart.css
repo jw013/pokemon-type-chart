@@ -153,15 +153,15 @@ th[colspan] {
 }
 
 /* Display the caption inside the first table cell which is otherwise empty.
- * - position: absolute on caption contents to make caption 0 size
- * - fixed width and height values ensure "caption" is same size as first cell for easy alignment
+ * - position: absolute on caption contents
+ * - fix width and height values on first cell for easy alignment
  */
  .relative {
   position: relative;
 }
 
 col[span] {
-  width: 2.6rem;
+  width: 2.8rem;
 }
 
 thead > tr {
@@ -178,10 +178,8 @@ thead > tr {
   font-weight: bold;
   font-variant-caps: petite-caps;
 
-  /* adjustments to avoid covering up existing borders */
-  width: calc(5.2rem - 1px); /* 2x col[span] width */
-  height: calc(2.6rem - 1px); /* 2x thead tr height */
-  margin: 1px 0 0 1px;
+  width: 5.6rem; /* 2x col[span] width */
+  height: 2.6rem; /* 2x thead tr height */
 }
 
 /* special case: make middle column on steel wider because it has more resistances */
@@ -284,4 +282,9 @@ thead > tr {
 
 .water {
   background-color: var(--water);
+}
+
+/* override */
+.caption-container {
+  background-color: transparent;
 }
