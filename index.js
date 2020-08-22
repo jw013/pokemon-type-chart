@@ -129,4 +129,3 @@ ${singleTypeChartToTable(chart).replace(/^/mg, '        ')}
 }
 
 Readable.from(generatePage(splitTypeChart)).pipe(process.stdout);
-//console.log(typesToList(splitTypeChart[0]["NR"]));
