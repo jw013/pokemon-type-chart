@@ -78,7 +78,7 @@ function singleTypeChartToTable(chart) {
     <tr>
       <th scope="row"><span class="sr-only">Neutral</span></th>
       <td>${typesToMergedList('nr', chart.NR, chart.NI)}</td>
-      <td><span class="sr-only">${(chart.NN.length < 5) ? typesToList('nn', chart.NN) : '<span class="nn-count">\u2026' + chart.NN.length + '\u2026</span>'}</span></td>
+      <td><div class="sr-only">${(chart.NN.length < 5) ? typesToList('nn', chart.NN) : '<span class="nn-count">\u2026' + chart.NN.length + '\u2026</span>'}</div></td>
       <td>${typesToList('ns', chart.NS)}</td>
     </tr>
     <tr>
