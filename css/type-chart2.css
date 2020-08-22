@@ -1,0 +1,432 @@
+/* misc reset styles */
+
+.type-charts-list, .type-list {
+    list-style: none;
+}
+
+td, th, table, ul, li, figure, .label {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-variant-caps: petite-caps;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* https://webaim.org/techniques/css/invisiblecontent/ */
+svg.defs, /* can't use display: none because it makes markers not work */
+.sr-only {
+    position: absolute;
+    left: -200vw;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* main 18-type grid */
+
+.type-charts-list {
+    display: grid;
+    margin: 0 8.5vmin;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+/* 7x3 layout: 3x3 physical on top, 3x3 special below, 2 slots for legend */
+.type-charts-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-flow: row;
+    gap: 0vmin;
+}
+
+/* shift middle column down for hexagonal circle packing */
+.type-charts-list > li:nth-child(3n+2) {
+    top: 50%;
+}
+
+/* individual chart layout */
+
+.type-charts-list > li {
+    position: relative; /* use as ancestor containing box for all descendants */
+    overflow: hidden;
+    display: grid;
+    margin: -11.5% -7%; /* hexagonal circle packing */
+}
+
+/* square aspect ratio */
+.type-charts-list > ::before {
+    content: '';
+    grid-area: 1 / 1;
+    padding-bottom: 100%;
+    width: 0;
+    height: 0;
+}
+
+/* targeting 19.5:9 = 2.16 aspect ratio */
+@media (max-aspect-ratio: 49/100) {
+    .type-charts-list > li {
+        margin: -8.5% -7%;
+    }
+
+    .type-charts-list {
+        margin: 0 2vmin;
+    }
+}
+
+/* TODO: figure out a desktop layout e.g. 16:9 */
+
+/* all the contents of this table are either screen-reader only or absolutely positioned
+ * Set its size to something small and fixed so it doesn't affect the size or aspect ratio
+ * of its container, which is controlled by its sibling .type-charts-list > li::before */
+.type-chart {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 1px;
+    height: 1px;
+    grid-area: 1 / 1;
+}
+
+.main-type, .satellite {
+    display: block;
+}
+
+/* svg foreignObject */
+div.type-icon {
+    padding-bottom: 100%;
+    height: 0;
+}
+
+.type-icon {
+    border-radius: 50%;
+}
+
+.satellite > use {
+    transform-origin: center;
+    transform: scale(1.8);
+}
+
+use[href='#sword-symbol'] {
+    transform-origin: center;
+    transform: scale(1.2) rotate(45deg);
+}
+
+.satellite > use[href='#sword-symbol'] {
+    transform: scale(2.16) rotate(45deg);
+}
+
+.satellite.immune {
+    margin: -2px;
+    border: 3px solid;
+    padding: 1px;
+}
+
+/* Geometry notes
+ * The max size of a satellite circle is determined by 2 constraints. 
+ * Let r = satellite radius, R = center radius
+ *   A: Allow 2 rings of satellite circles, so 50% = R + 4r.
+ *   B: The steel resistances sector needs to fit 3 circles along a straight line 
+ *      in the second ring. To avoid clipping into other sectors, 
+ *          ( 2r + r*cos(PI/8) ) / ( R + r + r*sqrt(3) - r*sin(PI/8) ) < tan(PI/8)
+ *      This constrains the R/r ratio to at least 4.71.
+ * Thus r <= 50%/(4.71 + 4) = 6.24%. 
+ * Final result: 11.5% satellite diameter, 54% center diameter.
+ */
+
+.main-type {
+    position: absolute;
+    z-index: 1;
+    width: 54%;
+    height: 54%;
+    left: 23%;
+    top: 23%;
+}
+
+.type-list > li {
+    flex: 0 0 11%;
+    padding: .25%;
+}
+
+/* matchup-ring styles
+ * 2-letter matchup codes:
+ *  - first letter is effectiveness when attacking main-type
+ *  - second letter is effectiveness when main type is attacking
+ *  - letters stand for: Resist, Neutral, Immune
+ */
+
+use.nr { transform: rotate(45deg); }
+use.sr { transform: rotate(90deg); }
+use.sn { transform: rotate(135deg); }
+use.ss { transform: rotate(180deg); }
+use.ns { transform: rotate(225deg); }
+use.rs { transform: rotate(270deg); }
+use.rn { transform: rotate(315deg); }
+
+use.ss, use.sn, use.sr {
+    marker-start: url(#super-effective-arrow);
+}
+
+use.rs, use.ns, use.ss {
+    marker-end: url(#super-effective-arrow);
+}
+
+use.rs, use.rn, use.rr {
+    marker-start: url(#resisted-arrow);
+}
+
+use.sr, use.nr, use.rr {
+    marker-end: url(#resisted-arrow);
+}
+
+/* Transform table cells into sectors of a circle
+ * Overview:
+ * - position top left corner at center of circle
+ * - skew sector to give it a 45 degree central angle, rotate it to correct angular position
+ * - center the inner type-list. Start centered on left edge of parent, undo the skew, then
+ *   rotate CCW by half the central angle.
+ * - undo rotation on the individual type icons to keep them vertical */
+
+.sector {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: top left;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.type-list {
+    position: relative;
+    right: 50%;
+    width: 100%;
+    height: 73%;
+    transform-origin: top center; /* same point as parent .sector */
+    transform: skewY(-45deg) rotate(-22.5deg);
+
+    /* inner styles */
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: center;
+    padding-top: 27%; /* clear the center circle radius */
+}
+
+/* all sectors need an extra 22.5deg rotation because they start with the left edge vertical */
+.sector.nr { transform: rotate(67.5deg) skewY(45deg); }
+.nr .type-icon { transform: rotate(-45deg); }
+
+.sector.sr { transform: rotate(112.5deg) skewY(45deg);}
+.sr .type-icon { transform: rotate(-90deg); }
+
+.sector.sn { transform: rotate(157.5deg) skewY(45deg); }
+.sn .type-icon { transform: rotate(-135deg); }
+
+.sector.ss { transform: rotate(202.5deg) skewY(45deg); }
+.ss .type-icon { transform: rotate(-180deg); }
+
+.sector.ns { transform: rotate(247.5deg) skewY(45deg); }
+.ns .type-icon { transform: rotate(-225deg); }
+
+.sector.rs { transform: rotate(292.5deg) skewY(45deg); }
+.rs .type-icon { transform: rotate(-270deg); }
+
+.sector.rn { transform: rotate(337.5deg) skewY(45deg); }
+.rn .type-icon { transform: rotate(-315deg); }
+
+.sector.rr { transform: rotate(22.5deg) skewY(45deg); }
+
+/* - insert line breaks after 2nd and 5th elements */
+.type-list::before, .type-list::after {
+    content: '';
+    flex: 1 0 100%;
+    order: 1;
+}
+.type-list > li:nth-child(n + 3) {
+    order: 1;
+}
+.type-list > li:nth-child(n + 6) {
+    order: 2;
+}
+
+/* - when there is an odd number, add negative margin for hexagonal circle packing */
+.type-list > li:first-child:nth-last-child(2n+3), 
+.type-list > li:first-child:nth-last-child(2n+3) ~ li {
+    margin-bottom: -1.54%; /* (2 - sqrt(3))/2 * 11.5% */
+}
+
+/* --- Legend styles --- */
+
+/* skip the middle cell of the last row */
+.type-charts-list::before {
+    content: '';
+    grid-area: 7 / 2;
+}
+
+.type-charts-list > li:nth-child(n+19) {
+    top: auto;
+}
+
+.legend {
+    font-size: 1.6em;
+    margin-bottom: 0;
+}
+
+/* reduce height to avoid vertical scrollbar */
+.legend::before {
+    padding-bottom: 88.5%;
+}
+
+figure {
+    grid-area: 1 / 1;
+}
+
+/* circular background region */
+figure > .sector::before {
+    content: '';
+    display: block;
+    width: 39%;
+    padding-bottom: 39%;
+    border-radius: 0 0 100% 0;
+    /* undo parent skew */
+    transform-origin: top left;
+    transform: skewY(-45deg);
+}
+
+.label {
+    position: absolute;
+    display: block;
+    width: max-content;
+    padding: .2ex .2em;
+    border-radius: .6ex;
+}
+
+.label.super-effective {
+    top: 25%;
+    transform: translate(-50%, -50%);
+}
+.offense > .label.super-effective {
+    left: 70%;
+}
+.defense > .label.super-effective {
+    left: 30%;
+}
+
+.label.resisted {
+    top: 63%;
+}
+.offense > .label.resisted {
+    right: 67%;
+}
+.defense > .label.resisted {
+    left: 67%;
+}
+
+.label.immune {
+    top: 76%;
+}
+.defense > .label.immune {
+    left: calc(50% - .8em - 2px);
+}
+.offense > .label.immune {
+    right: calc(50% - .8em - 2px);
+}
+
+.label > svg {
+    width: 1.2em;
+    display: inline-block;
+    vertical-align: text-bottom;
+}
+
+#attacking-ring > use {
+    marker-start: none;
+}
+
+#defending-ring > use {
+    marker-end: none;
+}
+
+/* --- colors --- */
+
+.normal { --type-color: #9099a1; }
+.fighting { --type-color: #ce406a; }
+.flying { --type-color: #8fa8dd; }
+.poison { --type-color: #a566c7; }
+.ground { --type-color: #d97745; }
+.rock { --type-color: #c7b78b; }
+.bug { --type-color: #90c12d; }
+.ghost { --type-color: #556aaf; }
+.steel { --type-color: #53879c; }
+.fire {--type-color:  #ff9c54; }
+.water { --type-color: #4e91d6; }
+.grass { --type-color: #60ba56; }
+.electric { --type-color: #f4d33f; }
+.psychic { --type-color: #f87176; }
+.ice { --type-color: #73cec0; }
+.dragon { --type-color: #0969c1; }
+.dark { --type-color: #5b5568; }
+.fairy { --type-color: #ec8ce3; }
+
+body {
+    background-color: whitesmoke;
+    color: black;
+}
+
+.main-type > svg {
+    fill: white;
+    stroke: white; /* Normal icon is a stroked path and does not use fill */
+}
+
+.satellite {
+    stroke: var(--type-color);
+    fill: var(--type-color);
+}
+
+.label > .satellite {
+    fill: #2f2f2f;
+}
+
+.satellite.immune {
+    border-color:  darkslategray;
+}
+
+.main-type > svg, .satellite {
+    stroke-width: 0; /* remove stroke for other types; does not affect Normal because it specifies its own stroke-width */
+}
+
+div.type-icon {
+    background: var(--type-color);
+}
+
+#matchup-line {
+    stroke: black;
+}
+
+marker {
+    fill: black;
+    stroke: none;
+}
+
+#defending-resist-curve, #attacking-resist-curve {
+    stroke: darkslategray;
+    fill: none;
+}
+
+figure > .sector::before {
+    background: #a9a9a9;
+}
+
+.label {
+    background: lightgray;
+}

@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/type-chart2.css">
+  <title>Pokémon Type Effectiveness</title>
+</head>
+<body>
+  <svg aria-hidden="true" class="defs">
+    <defs>
+      <path id="defending-resist-curve" class="r_" d="M-12.246 29.564 A32 32 0 0 0 29.564 -12.246" stroke-width="4"/>
+      <path id="attacking-resist-curve" class="_r" d="M16.838 40.561 A44 44 0 0 1 -40.561 -16.838" stroke-width="4"/>
+      <marker id="resisted-arrow" markerWidth="2" markerHeight="4" refX="2" refY="2" orient="auto-start-reverse">
+        <polygon points="0,0 2,0.8 2,3.2 0,4 .5,2"/>
+      </marker>
+      <marker id="super-effective-arrow" markerWidth="5" markerHeight="4" refX="2" refY="2" orient="auto-start-reverse">
+        <polygon points="0,0 5,2 0,4 .5,2"/>
+      </marker>
+      <line id="matchup-line" x1="0" x2="0" y1="32" y2="44" stroke-width="2"/>
+    </defs>
+    <symbol id="matchup-ring" viewBox="-50 -50 100 100">
+      <use href="#defending-resist-curve"/>
+      <use href="#attacking-resist-curve"/>
+      <use class="nr" href="#matchup-line"/>
+      <use class="sr" href="#matchup-line"/>
+      <use class="sn" href="#matchup-line"/>
+      <use class="ss" href="#matchup-line"/>
+      <use class="ns" href="#matchup-line"/>
+      <use class="rs" href="#matchup-line"/>
+      <use class="rn" href="#matchup-line"/>
+      <use class="rr" href="#matchup-line"/>
+    </symbol>
+    <symbol id="defending-ring" viewBox="-50 -50 100 100">
+      <use href="#defending-resist-curve"/>
+      <use class="sr" href="#matchup-line"/>
+      <use class="sn" href="#matchup-line"/>
+      <use class="ss" href="#matchup-line"/>
+      <use class="rs" href="#matchup-line"/>
+      <use class="rn" href="#matchup-line"/>
+      <use class="rr" href="#matchup-line"/>
+    </symbol>
+    <symbol id="attacking-ring" viewBox="-50 -50 100 100">
+      <use href="#attacking-resist-curve"/>
+      <use class="nr" href="#matchup-line"/>
+      <use class="sr" href="#matchup-line"/>
+      <use class="ss" href="#matchup-line"/>
+      <use class="ns" href="#matchup-line"/>
+      <use class="rs" href="#matchup-line"/>
+      <use class="rr" href="#matchup-line"/>
+    </symbol>
+    <symbol id="sword-symbol" viewBox="0 0 256 256">
+      <path d="m123.5 187.65c0 2.4853 2.0147 4.5 4.5 4.5s4.5-2.0147 4.5-4.5c-0.1666-5.7723-0.33366-12.674-0.50015-18.46-1.3282 0.14841-2.6636 0.31147-4 0.31139-1.3365-5.6e-4 -2.6719-0.16429-4-0.31339-0.11565 6.3453-0.34647 12.997-0.49985 18.462z"/>
+      <path d="m110.2 147.5-8.8984 6.4668a33 33 0 0 0 26.697 13.602 33 33 0 0 0 26.697-13.602l-8.8984-6.4668a22 22 0 0 1-17.799 9.0684 22 22 0 0 1-17.799-9.0684z"/>
+      <path d="m128 63.851-10.021 19.158v62.211l-3.4141 3.6337a19 20.222 0 0 0 13.436 5.9224 19 20.222 0 0 0 13.436-5.9224l-3.4141-3.6337v-62.211z"/>
+    </symbol>
+    <symbol id="shield-symbol" viewBox="0 0 256 256">
+      <path d="m128 74c-12 8-37 12-54 12 5.5248 73.61 36 100 54 108 17-8 48.475-34.39 54-108-17 0-42-4-54-12z"/>
+    </symbol>
+  </svg>
+  <h1>Pokémon Type Effectiveness</h1>
+  <ul class="type-charts-list">
+    <li>
+      <table class="type-chart">
+        <caption>
+          <svg role="img" viewBox="0 0 100 100" class="main-type">
+            <title>Normal</title>
+            <svg x="18" y="18" width="64" height="64">
+              <foreignObject width="100%" height="100%"><div class="type-icon normal"></div></foreignObject>
+              <use href="img/type-icons.svg#normal-symbol"/>
+            </svg>
+            <use href="#matchup-ring"/>
+          </svg>
+        </caption>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col"><span class="sr-only">Not Very Effective</span></th>
+            <th scope="col"><span class="sr-only">Neutral</span></th>
+            <th scope="col"><span class="sr-only">Super Effective</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="sr-only">Weak</span></th>
+            <td></td>
+            <td><div class="sector sn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="fighting satellite type-icon"><title>Fighting</title><use width="100%" height="100%" href="img/type-icons.svg#fighting-symbol"/></svg></li></ul></div></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Neutral</span></th>
+            <td><div class="sector nr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="rock satellite type-icon"><title>Rock</title><use width="100%" height="100%" href="img/type-icons.svg#rock-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="steel satellite type-icon"><title>Steel</title><use width="100%" height="100%" href="img/type-icons.svg#steel-symbol"/></svg></li></ul></div></td>
+            <td><span class="sr-only"><span class="nn-count">…14…</span></span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Resists</span></th>
+            <td><div class="sector rr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="ghost satellite immune type-icon"><title>Ghost (immune)</title><use width="100%" height="100%" href="img/type-icons.svg#ghost-symbol"/></svg></li></ul></div></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <table class="type-chart">
+        <caption>
+          <svg role="img" viewBox="0 0 100 100" class="main-type">
+            <title>Fighting</title>
+            <svg x="18" y="18" width="64" height="64">
+              <foreignObject width="100%" height="100%"><div class="type-icon fighting"></div></foreignObject>
+              <use href="img/type-icons.svg#fighting-symbol"/>
+            </svg>
+            <use href="#matchup-ring"/>
+          </svg>
+        </caption>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col"><span class="sr-only">Not Very Effective</span></th>
+            <th scope="col"><span class="sr-only">Neutral</span></th>
+            <th scope="col"><span class="sr-only">Super Effective</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="sr-only">Weak</span></th>
+            <td><div class="sector sr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="flying satellite type-icon"><title>Flying</title><use width="100%" height="100%" href="img/type-icons.svg#flying-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="psychic satellite type-icon"><title>Psychic</title><use width="100%" height="100%" href="img/type-icons.svg#psychic-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="fairy satellite type-icon"><title>Fairy</title><use width="100%" height="100%" href="img/type-icons.svg#fairy-symbol"/></svg></li></ul></div></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Neutral</span></th>
+            <td><div class="sector nr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="poison satellite type-icon"><title>Poison</title><use width="100%" height="100%" href="img/type-icons.svg#poison-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="ghost satellite immune type-icon"><title>Ghost (immune)</title><use width="100%" height="100%" href="img/type-icons.svg#ghost-symbol"/></svg></li></ul></div></td>
+            <td><span class="sr-only"><span class="nn-count">…7…</span></span></td>
+            <td><div class="sector ns"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="normal satellite type-icon"><title>Normal</title><use width="100%" height="100%" href="img/type-icons.svg#normal-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="steel satellite type-icon"><title>Steel</title><use width="100%" height="100%" href="img/type-icons.svg#steel-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="ice satellite type-icon"><title>Ice</title><use width="100%" height="100%" href="img/type-icons.svg#ice-symbol"/></svg></li></ul></div></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Resists</span></th>
+            <td><div class="sector rr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="bug satellite type-icon"><title>Bug</title><use width="100%" height="100%" href="img/type-icons.svg#bug-symbol"/></svg></li></ul></div></td>
+            <td></td>
+            <td><div class="sector rs"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="rock satellite type-icon"><title>Rock</title><use width="100%" height="100%" href="img/type-icons.svg#rock-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="dark satellite type-icon"><title>Dark</title><use width="100%" height="100%" href="img/type-icons.svg#dark-symbol"/></svg></li></ul></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <table class="type-chart">
+        <caption>
+          <svg role="img" viewBox="0 0 100 100" class="main-type">
+            <title>Flying</title>
+            <svg x="18" y="18" width="64" height="64">
+              <foreignObject width="100%" height="100%"><div class="type-icon flying"></div></foreignObject>
+              <use href="img/type-icons.svg#flying-symbol"/>
+            </svg>
+            <use href="#matchup-ring"/>
+          </svg>
+        </caption>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col"><span class="sr-only">Not Very Effective</span></th>
+            <th scope="col"><span class="sr-only">Neutral</span></th>
+            <th scope="col"><span class="sr-only">Super Effective</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="sr-only">Weak</span></th>
+            <td><div class="sector sr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="rock satellite type-icon"><title>Rock</title><use width="100%" height="100%" href="img/type-icons.svg#rock-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="electric satellite type-icon"><title>Electric</title><use width="100%" height="100%" href="img/type-icons.svg#electric-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector sn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="ice satellite type-icon"><title>Ice</title><use width="100%" height="100%" href="img/type-icons.svg#ice-symbol"/></svg></li></ul></div></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Neutral</span></th>
+            <td><div class="sector nr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="steel satellite type-icon"><title>Steel</title><use width="100%" height="100%" href="img/type-icons.svg#steel-symbol"/></svg></li></ul></div></td>
+            <td><span class="sr-only"><span class="nn-count">…10…</span></span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Resists</span></th>
+            <td></td>
+            <td><div class="sector rn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="ground satellite immune type-icon"><title>Ground (immune)</title><use width="100%" height="100%" href="img/type-icons.svg#ground-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector rs"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="fighting satellite type-icon"><title>Fighting</title><use width="100%" height="100%" href="img/type-icons.svg#fighting-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="bug satellite type-icon"><title>Bug</title><use width="100%" height="100%" href="img/type-icons.svg#bug-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="grass satellite type-icon"><title>Grass</title><use width="100%" height="100%" href="img/type-icons.svg#grass-symbol"/></svg></li></ul></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <table class="type-chart">
+        <caption>
+          <svg role="img" viewBox="0 0 100 100" class="main-type">
+            <title>Poison</title>
+            <svg x="18" y="18" width="64" height="64">
+              <foreignObject width="100%" height="100%"><div class="type-icon poison"></div></foreignObject>
+              <use href="img/type-icons.svg#poison-symbol"/>
+            </svg>
+            <use href="#matchup-ring"/>
+          </svg>
+        </caption>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col"><span class="sr-only">Not Very Effective</span></th>
+            <th scope="col"><span class="sr-only">Neutral</span></th>
+            <th scope="col"><span class="sr-only">Super Effective</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="sr-only">Weak</span></th>
+            <td><div class="sector sr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="ground satellite type-icon"><title>Ground</title><use width="100%" height="100%" href="img/type-icons.svg#ground-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector sn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="psychic satellite type-icon"><title>Psychic</title><use width="100%" height="100%" href="img/type-icons.svg#psychic-symbol"/></svg></li></ul></div></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Neutral</span></th>
+            <td><div class="sector nr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="rock satellite type-icon"><title>Rock</title><use width="100%" height="100%" href="img/type-icons.svg#rock-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="ghost satellite type-icon"><title>Ghost</title><use width="100%" height="100%" href="img/type-icons.svg#ghost-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="steel satellite immune type-icon"><title>Steel (immune)</title><use width="100%" height="100%" href="img/type-icons.svg#steel-symbol"/></svg></li></ul></div></td>
+            <td><span class="sr-only"><span class="nn-count">…8…</span></span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Resists</span></th>
+            <td><div class="sector rr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="poison satellite type-icon"><title>Poison</title><use width="100%" height="100%" href="img/type-icons.svg#poison-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector rn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="fighting satellite type-icon"><title>Fighting</title><use width="100%" height="100%" href="img/type-icons.svg#fighting-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="bug satellite type-icon"><title>Bug</title><use width="100%" height="100%" href="img/type-icons.svg#bug-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector rs"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="grass satellite type-icon"><title>Grass</title><use width="100%" height="100%" href="img/type-icons.svg#grass-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="fairy satellite type-icon"><title>Fairy</title><use width="100%" height="100%" href="img/type-icons.svg#fairy-symbol"/></svg></li></ul></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <table class="type-chart">
+        <caption>
+          <svg role="img" viewBox="0 0 100 100" class="main-type">
+            <title>Ground</title>
+            <svg x="18" y="18" width="64" height="64">
+              <foreignObject width="100%" height="100%"><div class="type-icon ground"></div></foreignObject>
+              <use href="img/type-icons.svg#ground-symbol"/>
+            </svg>
+            <use href="#matchup-ring"/>
+          </svg>
+        </caption>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col"><span class="sr-only">Not Very Effective</span></th>
+            <th scope="col"><span class="sr-only">Neutral</span></th>
+            <th scope="col"><span class="sr-only">Super Effective</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="sr-only">Weak</span></th>
+            <td><div class="sector sr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="grass satellite type-icon"><title>Grass</title><use width="100%" height="100%" href="img/type-icons.svg#grass-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector sn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="water satellite type-icon"><title>Water</title><use width="100%" height="100%" href="img/type-icons.svg#water-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="ice satellite type-icon"><title>Ice</title><use width="100%" height="100%" href="img/type-icons.svg#ice-symbol"/></svg></li></ul></div></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Neutral</span></th>
+            <td><div class="sector nr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="bug satellite type-icon"><title>Bug</title><use width="100%" height="100%" href="img/type-icons.svg#bug-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="flying satellite immune type-icon"><title>Flying (immune)</title><use width="100%" height="100%" href="img/type-icons.svg#flying-symbol"/></svg></li></ul></div></td>
+            <td><span class="sr-only"><span class="nn-count">…8…</span></span></td>
+            <td><div class="sector ns"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="steel satellite type-icon"><title>Steel</title><use width="100%" height="100%" href="img/type-icons.svg#steel-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="fire satellite type-icon"><title>Fire</title><use width="100%" height="100%" href="img/type-icons.svg#fire-symbol"/></svg></li></ul></div></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Resists</span></th>
+            <td></td>
+            <td></td>
+            <td><div class="sector rs"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="poison satellite type-icon"><title>Poison</title><use width="100%" height="100%" href="img/type-icons.svg#poison-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="rock satellite type-icon"><title>Rock</title><use width="100%" height="100%" href="img/type-icons.svg#rock-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="electric satellite immune type-icon"><title>Electric (immune)</title><use width="100%" height="100%" href="img/type-icons.svg#electric-symbol"/></svg></li></ul></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <table class="type-chart">
+        <caption>
+          <svg role="img" viewBox="0 0 100 100" class="main-type">
+            <title>Rock</title>
+            <svg x="18" y="18" width="64" height="64">
+              <foreignObject width="100%" height="100%"><div class="type-icon rock"></div></foreignObject>
+              <use href="img/type-icons.svg#rock-symbol"/>
+            </svg>
+            <use href="#matchup-ring"/>
+          </svg>
+        </caption>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col"><span class="sr-only">Not Very Effective</span></th>
+            <th scope="col"><span class="sr-only">Neutral</span></th>
+            <th scope="col"><span class="sr-only">Super Effective</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="sr-only">Weak</span></th>
+            <td><div class="sector sr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="fighting satellite type-icon"><title>Fighting</title><use width="100%" height="100%" href="img/type-icons.svg#fighting-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="ground satellite type-icon"><title>Ground</title><use width="100%" height="100%" href="img/type-icons.svg#ground-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="steel satellite type-icon"><title>Steel</title><use width="100%" height="100%" href="img/type-icons.svg#steel-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector sn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="water satellite type-icon"><title>Water</title><use width="100%" height="100%" href="img/type-icons.svg#water-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="grass satellite type-icon"><title>Grass</title><use width="100%" height="100%" href="img/type-icons.svg#grass-symbol"/></svg></li></ul></div></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Neutral</span></th>
+            <td></td>
+            <td><span class="sr-only"><span class="nn-count">…7…</span></span></td>
+            <td><div class="sector ns"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="bug satellite type-icon"><title>Bug</title><use width="100%" height="100%" href="img/type-icons.svg#bug-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="ice satellite type-icon"><title>Ice</title><use width="100%" height="100%" href="img/type-icons.svg#ice-symbol"/></svg></li></ul></div></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Resists</span></th>
+            <td></td>
+            <td><div class="sector rn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="normal satellite type-icon"><title>Normal</title><use width="100%" height="100%" href="img/type-icons.svg#normal-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="poison satellite type-icon"><title>Poison</title><use width="100%" height="100%" href="img/type-icons.svg#poison-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector rs"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="flying satellite type-icon"><title>Flying</title><use width="100%" height="100%" href="img/type-icons.svg#flying-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="fire satellite type-icon"><title>Fire</title><use width="100%" height="100%" href="img/type-icons.svg#fire-symbol"/></svg></li></ul></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <table class="type-chart">
+        <caption>
+          <svg role="img" viewBox="0 0 100 100" class="main-type">
+            <title>Bug</title>
+            <svg x="18" y="18" width="64" height="64">
+              <foreignObject width="100%" height="100%"><div class="type-icon bug"></div></foreignObject>
+              <use href="img/type-icons.svg#bug-symbol"/>
+            </svg>
+            <use href="#matchup-ring"/>
+          </svg>
+        </caption>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col"><span class="sr-only">Not Very Effective</span></th>
+            <th scope="col"><span class="sr-only">Neutral</span></th>
+            <th scope="col"><span class="sr-only">Super Effective</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="sr-only">Weak</span></th>
+            <td><div class="sector sr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="flying satellite type-icon"><title>Flying</title><use width="100%" height="100%" href="img/type-icons.svg#flying-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="fire satellite type-icon"><title>Fire</title><use width="100%" height="100%" href="img/type-icons.svg#fire-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector sn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="rock satellite type-icon"><title>Rock</title><use width="100%" height="100%" href="img/type-icons.svg#rock-symbol"/></svg></li></ul></div></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Neutral</span></th>
+            <td><div class="sector nr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="poison satellite type-icon"><title>Poison</title><use width="100%" height="100%" href="img/type-icons.svg#poison-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="ghost satellite type-icon"><title>Ghost</title><use width="100%" height="100%" href="img/type-icons.svg#ghost-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="steel satellite type-icon"><title>Steel</title><use width="100%" height="100%" href="img/type-icons.svg#steel-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="fairy satellite type-icon"><title>Fairy</title><use width="100%" height="100%" href="img/type-icons.svg#fairy-symbol"/></svg></li></ul></div></td>
+            <td><span class="sr-only"><span class="nn-count">…6…</span></span></td>
+            <td><div class="sector ns"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="psychic satellite type-icon"><title>Psychic</title><use width="100%" height="100%" href="img/type-icons.svg#psychic-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="dark satellite type-icon"><title>Dark</title><use width="100%" height="100%" href="img/type-icons.svg#dark-symbol"/></svg></li></ul></div></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Resists</span></th>
+            <td><div class="sector rr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="fighting satellite type-icon"><title>Fighting</title><use width="100%" height="100%" href="img/type-icons.svg#fighting-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector rn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="ground satellite type-icon"><title>Ground</title><use width="100%" height="100%" href="img/type-icons.svg#ground-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector rs"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="grass satellite type-icon"><title>Grass</title><use width="100%" height="100%" href="img/type-icons.svg#grass-symbol"/></svg></li></ul></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <table class="type-chart">
+        <caption>
+          <svg role="img" viewBox="0 0 100 100" class="main-type">
+            <title>Ghost</title>
+            <svg x="18" y="18" width="64" height="64">
+              <foreignObject width="100%" height="100%"><div class="type-icon ghost"></div></foreignObject>
+              <use href="img/type-icons.svg#ghost-symbol"/>
+            </svg>
+            <use href="#matchup-ring"/>
+          </svg>
+        </caption>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col"><span class="sr-only">Not Very Effective</span></th>
+            <th scope="col"><span class="sr-only">Neutral</span></th>
+            <th scope="col"><span class="sr-only">Super Effective</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="sr-only">Weak</span></th>
+            <td><div class="sector sr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="dark satellite type-icon"><title>Dark</title><use width="100%" height="100%" href="img/type-icons.svg#dark-symbol"/></svg></li></ul></div></td>
+            <td></td>
+            <td><div class="sector ss"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="ghost satellite type-icon"><title>Ghost</title><use width="100%" height="100%" href="img/type-icons.svg#ghost-symbol"/></svg></li></ul></div></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Neutral</span></th>
+            <td></td>
+            <td><span class="sr-only"><span class="nn-count">…11…</span></span></td>
+            <td><div class="sector ns"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="psychic satellite type-icon"><title>Psychic</title><use width="100%" height="100%" href="img/type-icons.svg#psychic-symbol"/></svg></li></ul></div></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Resists</span></th>
+            <td><div class="sector rr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="normal satellite immune type-icon"><title>Normal (immune)</title><use width="100%" height="100%" href="img/type-icons.svg#normal-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector rn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="poison satellite type-icon"><title>Poison</title><use width="100%" height="100%" href="img/type-icons.svg#poison-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="bug satellite type-icon"><title>Bug</title><use width="100%" height="100%" href="img/type-icons.svg#bug-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="fighting satellite immune type-icon"><title>Fighting (immune)</title><use width="100%" height="100%" href="img/type-icons.svg#fighting-symbol"/></svg></li></ul></div></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <table class="type-chart">
+        <caption>
+          <svg role="img" viewBox="0 0 100 100" class="main-type">
+            <title>Steel</title>
+            <svg x="18" y="18" width="64" height="64">
+              <foreignObject width="100%" height="100%"><div class="type-icon steel"></div></foreignObject>
+              <use href="img/type-icons.svg#steel-symbol"/>
+            </svg>
+            <use href="#matchup-ring"/>
+          </svg>
+        </caption>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col"><span class="sr-only">Not Very Effective</span></th>
+            <th scope="col"><span class="sr-only">Neutral</span></th>
+            <th scope="col"><span class="sr-only">Super Effective</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="sr-only">Weak</span></th>
+            <td><div class="sector sr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="fire satellite type-icon"><title>Fire</title><use width="100%" height="100%" href="img/type-icons.svg#fire-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector sn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="fighting satellite type-icon"><title>Fighting</title><use width="100%" height="100%" href="img/type-icons.svg#fighting-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="ground satellite type-icon"><title>Ground</title><use width="100%" height="100%" href="img/type-icons.svg#ground-symbol"/></svg></li></ul></div></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Neutral</span></th>
+            <td><div class="sector nr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="water satellite type-icon"><title>Water</title><use width="100%" height="100%" href="img/type-icons.svg#water-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="electric satellite type-icon"><title>Electric</title><use width="100%" height="100%" href="img/type-icons.svg#electric-symbol"/></svg></li></ul></div></td>
+            <td><span class="sr-only"><div class="sector nn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="ghost satellite type-icon"><title>Ghost</title><use width="100%" height="100%" href="img/type-icons.svg#ghost-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="dark satellite type-icon"><title>Dark</title><use width="100%" height="100%" href="img/type-icons.svg#dark-symbol"/></svg></li></ul></div></span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Resists</span></th>
+            <td><div class="sector rr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="steel satellite type-icon"><title>Steel</title><use width="100%" height="100%" href="img/type-icons.svg#steel-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector rn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="normal satellite type-icon"><title>Normal</title><use width="100%" height="100%" href="img/type-icons.svg#normal-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="flying satellite type-icon"><title>Flying</title><use width="100%" height="100%" href="img/type-icons.svg#flying-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="bug satellite type-icon"><title>Bug</title><use width="100%" height="100%" href="img/type-icons.svg#bug-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="grass satellite type-icon"><title>Grass</title><use width="100%" height="100%" href="img/type-icons.svg#grass-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="psychic satellite type-icon"><title>Psychic</title><use width="100%" height="100%" href="img/type-icons.svg#psychic-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="dragon satellite type-icon"><title>Dragon</title><use width="100%" height="100%" href="img/type-icons.svg#dragon-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="poison satellite immune type-icon"><title>Poison (immune)</title><use width="100%" height="100%" href="img/type-icons.svg#poison-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector rs"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="rock satellite type-icon"><title>Rock</title><use width="100%" height="100%" href="img/type-icons.svg#rock-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="ice satellite type-icon"><title>Ice</title><use width="100%" height="100%" href="img/type-icons.svg#ice-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="fairy satellite type-icon"><title>Fairy</title><use width="100%" height="100%" href="img/type-icons.svg#fairy-symbol"/></svg></li></ul></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <table class="type-chart">
+        <caption>
+          <svg role="img" viewBox="0 0 100 100" class="main-type">
+            <title>Fire</title>
+            <svg x="18" y="18" width="64" height="64">
+              <foreignObject width="100%" height="100%"><div class="type-icon fire"></div></foreignObject>
+              <use href="img/type-icons.svg#fire-symbol"/>
+            </svg>
+            <use href="#matchup-ring"/>
+          </svg>
+        </caption>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col"><span class="sr-only">Not Very Effective</span></th>
+            <th scope="col"><span class="sr-only">Neutral</span></th>
+            <th scope="col"><span class="sr-only">Super Effective</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="sr-only">Weak</span></th>
+            <td><div class="sector sr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="rock satellite type-icon"><title>Rock</title><use width="100%" height="100%" href="img/type-icons.svg#rock-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="water satellite type-icon"><title>Water</title><use width="100%" height="100%" href="img/type-icons.svg#water-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector sn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="ground satellite type-icon"><title>Ground</title><use width="100%" height="100%" href="img/type-icons.svg#ground-symbol"/></svg></li></ul></div></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Neutral</span></th>
+            <td><div class="sector nr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="dragon satellite type-icon"><title>Dragon</title><use width="100%" height="100%" href="img/type-icons.svg#dragon-symbol"/></svg></li></ul></div></td>
+            <td><span class="sr-only"><span class="nn-count">…8…</span></span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Resists</span></th>
+            <td><div class="sector rr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="fire satellite type-icon"><title>Fire</title><use width="100%" height="100%" href="img/type-icons.svg#fire-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector rn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="fairy satellite type-icon"><title>Fairy</title><use width="100%" height="100%" href="img/type-icons.svg#fairy-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector rs"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="bug satellite type-icon"><title>Bug</title><use width="100%" height="100%" href="img/type-icons.svg#bug-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="steel satellite type-icon"><title>Steel</title><use width="100%" height="100%" href="img/type-icons.svg#steel-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="grass satellite type-icon"><title>Grass</title><use width="100%" height="100%" href="img/type-icons.svg#grass-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="ice satellite type-icon"><title>Ice</title><use width="100%" height="100%" href="img/type-icons.svg#ice-symbol"/></svg></li></ul></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <table class="type-chart">
+        <caption>
+          <svg role="img" viewBox="0 0 100 100" class="main-type">
+            <title>Water</title>
+            <svg x="18" y="18" width="64" height="64">
+              <foreignObject width="100%" height="100%"><div class="type-icon water"></div></foreignObject>
+              <use href="img/type-icons.svg#water-symbol"/>
+            </svg>
+            <use href="#matchup-ring"/>
+          </svg>
+        </caption>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col"><span class="sr-only">Not Very Effective</span></th>
+            <th scope="col"><span class="sr-only">Neutral</span></th>
+            <th scope="col"><span class="sr-only">Super Effective</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="sr-only">Weak</span></th>
+            <td><div class="sector sr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="grass satellite type-icon"><title>Grass</title><use width="100%" height="100%" href="img/type-icons.svg#grass-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector sn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="electric satellite type-icon"><title>Electric</title><use width="100%" height="100%" href="img/type-icons.svg#electric-symbol"/></svg></li></ul></div></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Neutral</span></th>
+            <td><div class="sector nr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="dragon satellite type-icon"><title>Dragon</title><use width="100%" height="100%" href="img/type-icons.svg#dragon-symbol"/></svg></li></ul></div></td>
+            <td><span class="sr-only"><span class="nn-count">…9…</span></span></td>
+            <td><div class="sector ns"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="ground satellite type-icon"><title>Ground</title><use width="100%" height="100%" href="img/type-icons.svg#ground-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="rock satellite type-icon"><title>Rock</title><use width="100%" height="100%" href="img/type-icons.svg#rock-symbol"/></svg></li></ul></div></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Resists</span></th>
+            <td><div class="sector rr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="water satellite type-icon"><title>Water</title><use width="100%" height="100%" href="img/type-icons.svg#water-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector rn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="steel satellite type-icon"><title>Steel</title><use width="100%" height="100%" href="img/type-icons.svg#steel-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="ice satellite type-icon"><title>Ice</title><use width="100%" height="100%" href="img/type-icons.svg#ice-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector rs"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="fire satellite type-icon"><title>Fire</title><use width="100%" height="100%" href="img/type-icons.svg#fire-symbol"/></svg></li></ul></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <table class="type-chart">
+        <caption>
+          <svg role="img" viewBox="0 0 100 100" class="main-type">
+            <title>Grass</title>
+            <svg x="18" y="18" width="64" height="64">
+              <foreignObject width="100%" height="100%"><div class="type-icon grass"></div></foreignObject>
+              <use href="img/type-icons.svg#grass-symbol"/>
+            </svg>
+            <use href="#matchup-ring"/>
+          </svg>
+        </caption>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col"><span class="sr-only">Not Very Effective</span></th>
+            <th scope="col"><span class="sr-only">Neutral</span></th>
+            <th scope="col"><span class="sr-only">Super Effective</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="sr-only">Weak</span></th>
+            <td><div class="sector sr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="flying satellite type-icon"><title>Flying</title><use width="100%" height="100%" href="img/type-icons.svg#flying-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="poison satellite type-icon"><title>Poison</title><use width="100%" height="100%" href="img/type-icons.svg#poison-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="bug satellite type-icon"><title>Bug</title><use width="100%" height="100%" href="img/type-icons.svg#bug-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="fire satellite type-icon"><title>Fire</title><use width="100%" height="100%" href="img/type-icons.svg#fire-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector sn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="ice satellite type-icon"><title>Ice</title><use width="100%" height="100%" href="img/type-icons.svg#ice-symbol"/></svg></li></ul></div></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Neutral</span></th>
+            <td><div class="sector nr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="steel satellite type-icon"><title>Steel</title><use width="100%" height="100%" href="img/type-icons.svg#steel-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="dragon satellite type-icon"><title>Dragon</title><use width="100%" height="100%" href="img/type-icons.svg#dragon-symbol"/></svg></li></ul></div></td>
+            <td><span class="sr-only"><span class="nn-count">…6…</span></span></td>
+            <td><div class="sector ns"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="rock satellite type-icon"><title>Rock</title><use width="100%" height="100%" href="img/type-icons.svg#rock-symbol"/></svg></li></ul></div></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Resists</span></th>
+            <td><div class="sector rr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="grass satellite type-icon"><title>Grass</title><use width="100%" height="100%" href="img/type-icons.svg#grass-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector rn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="electric satellite type-icon"><title>Electric</title><use width="100%" height="100%" href="img/type-icons.svg#electric-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector rs"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="ground satellite type-icon"><title>Ground</title><use width="100%" height="100%" href="img/type-icons.svg#ground-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="water satellite type-icon"><title>Water</title><use width="100%" height="100%" href="img/type-icons.svg#water-symbol"/></svg></li></ul></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <table class="type-chart">
+        <caption>
+          <svg role="img" viewBox="0 0 100 100" class="main-type">
+            <title>Electric</title>
+            <svg x="18" y="18" width="64" height="64">
+              <foreignObject width="100%" height="100%"><div class="type-icon electric"></div></foreignObject>
+              <use href="img/type-icons.svg#electric-symbol"/>
+            </svg>
+            <use href="#matchup-ring"/>
+          </svg>
+        </caption>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col"><span class="sr-only">Not Very Effective</span></th>
+            <th scope="col"><span class="sr-only">Neutral</span></th>
+            <th scope="col"><span class="sr-only">Super Effective</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="sr-only">Weak</span></th>
+            <td><div class="sector sr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="ground satellite immune type-icon"><title>Ground (immune)</title><use width="100%" height="100%" href="img/type-icons.svg#ground-symbol"/></svg></li></ul></div></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Neutral</span></th>
+            <td><div class="sector nr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="grass satellite type-icon"><title>Grass</title><use width="100%" height="100%" href="img/type-icons.svg#grass-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="dragon satellite type-icon"><title>Dragon</title><use width="100%" height="100%" href="img/type-icons.svg#dragon-symbol"/></svg></li></ul></div></td>
+            <td><span class="sr-only"><span class="nn-count">…11…</span></span></td>
+            <td><div class="sector ns"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="water satellite type-icon"><title>Water</title><use width="100%" height="100%" href="img/type-icons.svg#water-symbol"/></svg></li></ul></div></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Resists</span></th>
+            <td><div class="sector rr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="electric satellite type-icon"><title>Electric</title><use width="100%" height="100%" href="img/type-icons.svg#electric-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector rn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="steel satellite type-icon"><title>Steel</title><use width="100%" height="100%" href="img/type-icons.svg#steel-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector rs"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="flying satellite type-icon"><title>Flying</title><use width="100%" height="100%" href="img/type-icons.svg#flying-symbol"/></svg></li></ul></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <table class="type-chart">
+        <caption>
+          <svg role="img" viewBox="0 0 100 100" class="main-type">
+            <title>Psychic</title>
+            <svg x="18" y="18" width="64" height="64">
+              <foreignObject width="100%" height="100%"><div class="type-icon psychic"></div></foreignObject>
+              <use href="img/type-icons.svg#psychic-symbol"/>
+            </svg>
+            <use href="#matchup-ring"/>
+          </svg>
+        </caption>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col"><span class="sr-only">Not Very Effective</span></th>
+            <th scope="col"><span class="sr-only">Neutral</span></th>
+            <th scope="col"><span class="sr-only">Super Effective</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="sr-only">Weak</span></th>
+            <td><div class="sector sr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="dark satellite immune type-icon"><title>Dark (immune)</title><use width="100%" height="100%" href="img/type-icons.svg#dark-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector sn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="bug satellite type-icon"><title>Bug</title><use width="100%" height="100%" href="img/type-icons.svg#bug-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="ghost satellite type-icon"><title>Ghost</title><use width="100%" height="100%" href="img/type-icons.svg#ghost-symbol"/></svg></li></ul></div></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Neutral</span></th>
+            <td><div class="sector nr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="steel satellite type-icon"><title>Steel</title><use width="100%" height="100%" href="img/type-icons.svg#steel-symbol"/></svg></li></ul></div></td>
+            <td><span class="sr-only"><span class="nn-count">…11…</span></span></td>
+            <td><div class="sector ns"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="poison satellite type-icon"><title>Poison</title><use width="100%" height="100%" href="img/type-icons.svg#poison-symbol"/></svg></li></ul></div></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Resists</span></th>
+            <td><div class="sector rr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="psychic satellite type-icon"><title>Psychic</title><use width="100%" height="100%" href="img/type-icons.svg#psychic-symbol"/></svg></li></ul></div></td>
+            <td></td>
+            <td><div class="sector rs"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="fighting satellite type-icon"><title>Fighting</title><use width="100%" height="100%" href="img/type-icons.svg#fighting-symbol"/></svg></li></ul></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <table class="type-chart">
+        <caption>
+          <svg role="img" viewBox="0 0 100 100" class="main-type">
+            <title>Ice</title>
+            <svg x="18" y="18" width="64" height="64">
+              <foreignObject width="100%" height="100%"><div class="type-icon ice"></div></foreignObject>
+              <use href="img/type-icons.svg#ice-symbol"/>
+            </svg>
+            <use href="#matchup-ring"/>
+          </svg>
+        </caption>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col"><span class="sr-only">Not Very Effective</span></th>
+            <th scope="col"><span class="sr-only">Neutral</span></th>
+            <th scope="col"><span class="sr-only">Super Effective</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="sr-only">Weak</span></th>
+            <td><div class="sector sr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="steel satellite type-icon"><title>Steel</title><use width="100%" height="100%" href="img/type-icons.svg#steel-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="fire satellite type-icon"><title>Fire</title><use width="100%" height="100%" href="img/type-icons.svg#fire-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector sn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="fighting satellite type-icon"><title>Fighting</title><use width="100%" height="100%" href="img/type-icons.svg#fighting-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="rock satellite type-icon"><title>Rock</title><use width="100%" height="100%" href="img/type-icons.svg#rock-symbol"/></svg></li></ul></div></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Neutral</span></th>
+            <td><div class="sector nr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="water satellite type-icon"><title>Water</title><use width="100%" height="100%" href="img/type-icons.svg#water-symbol"/></svg></li></ul></div></td>
+            <td><span class="sr-only"><span class="nn-count">…8…</span></span></td>
+            <td><div class="sector ns"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="flying satellite type-icon"><title>Flying</title><use width="100%" height="100%" href="img/type-icons.svg#flying-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="ground satellite type-icon"><title>Ground</title><use width="100%" height="100%" href="img/type-icons.svg#ground-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="grass satellite type-icon"><title>Grass</title><use width="100%" height="100%" href="img/type-icons.svg#grass-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="dragon satellite type-icon"><title>Dragon</title><use width="100%" height="100%" href="img/type-icons.svg#dragon-symbol"/></svg></li></ul></div></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Resists</span></th>
+            <td><div class="sector rr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="ice satellite type-icon"><title>Ice</title><use width="100%" height="100%" href="img/type-icons.svg#ice-symbol"/></svg></li></ul></div></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <table class="type-chart">
+        <caption>
+          <svg role="img" viewBox="0 0 100 100" class="main-type">
+            <title>Dragon</title>
+            <svg x="18" y="18" width="64" height="64">
+              <foreignObject width="100%" height="100%"><div class="type-icon dragon"></div></foreignObject>
+              <use href="img/type-icons.svg#dragon-symbol"/>
+            </svg>
+            <use href="#matchup-ring"/>
+          </svg>
+        </caption>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col"><span class="sr-only">Not Very Effective</span></th>
+            <th scope="col"><span class="sr-only">Neutral</span></th>
+            <th scope="col"><span class="sr-only">Super Effective</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="sr-only">Weak</span></th>
+            <td><div class="sector sr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="fairy satellite immune type-icon"><title>Fairy (immune)</title><use width="100%" height="100%" href="img/type-icons.svg#fairy-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector sn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="ice satellite type-icon"><title>Ice</title><use width="100%" height="100%" href="img/type-icons.svg#ice-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector ss"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="dragon satellite type-icon"><title>Dragon</title><use width="100%" height="100%" href="img/type-icons.svg#dragon-symbol"/></svg></li></ul></div></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Neutral</span></th>
+            <td><div class="sector nr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="steel satellite type-icon"><title>Steel</title><use width="100%" height="100%" href="img/type-icons.svg#steel-symbol"/></svg></li></ul></div></td>
+            <td><span class="sr-only"><span class="nn-count">…10…</span></span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Resists</span></th>
+            <td></td>
+            <td><div class="sector rn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="fire satellite type-icon"><title>Fire</title><use width="100%" height="100%" href="img/type-icons.svg#fire-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="water satellite type-icon"><title>Water</title><use width="100%" height="100%" href="img/type-icons.svg#water-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="grass satellite type-icon"><title>Grass</title><use width="100%" height="100%" href="img/type-icons.svg#grass-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="electric satellite type-icon"><title>Electric</title><use width="100%" height="100%" href="img/type-icons.svg#electric-symbol"/></svg></li></ul></div></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <table class="type-chart">
+        <caption>
+          <svg role="img" viewBox="0 0 100 100" class="main-type">
+            <title>Dark</title>
+            <svg x="18" y="18" width="64" height="64">
+              <foreignObject width="100%" height="100%"><div class="type-icon dark"></div></foreignObject>
+              <use href="img/type-icons.svg#dark-symbol"/>
+            </svg>
+            <use href="#matchup-ring"/>
+          </svg>
+        </caption>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col"><span class="sr-only">Not Very Effective</span></th>
+            <th scope="col"><span class="sr-only">Neutral</span></th>
+            <th scope="col"><span class="sr-only">Super Effective</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="sr-only">Weak</span></th>
+            <td><div class="sector sr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="fighting satellite type-icon"><title>Fighting</title><use width="100%" height="100%" href="img/type-icons.svg#fighting-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="fairy satellite type-icon"><title>Fairy</title><use width="100%" height="100%" href="img/type-icons.svg#fairy-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector sn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="bug satellite type-icon"><title>Bug</title><use width="100%" height="100%" href="img/type-icons.svg#bug-symbol"/></svg></li></ul></div></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Neutral</span></th>
+            <td></td>
+            <td><span class="sr-only"><span class="nn-count">…12…</span></span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Resists</span></th>
+            <td><div class="sector rr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="dark satellite type-icon"><title>Dark</title><use width="100%" height="100%" href="img/type-icons.svg#dark-symbol"/></svg></li></ul></div></td>
+            <td></td>
+            <td><div class="sector rs"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="ghost satellite type-icon"><title>Ghost</title><use width="100%" height="100%" href="img/type-icons.svg#ghost-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="psychic satellite immune type-icon"><title>Psychic (immune)</title><use width="100%" height="100%" href="img/type-icons.svg#psychic-symbol"/></svg></li></ul></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <table class="type-chart">
+        <caption>
+          <svg role="img" viewBox="0 0 100 100" class="main-type">
+            <title>Fairy</title>
+            <svg x="18" y="18" width="64" height="64">
+              <foreignObject width="100%" height="100%"><div class="type-icon fairy"></div></foreignObject>
+              <use href="img/type-icons.svg#fairy-symbol"/>
+            </svg>
+            <use href="#matchup-ring"/>
+          </svg>
+        </caption>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col"><span class="sr-only">Not Very Effective</span></th>
+            <th scope="col"><span class="sr-only">Neutral</span></th>
+            <th scope="col"><span class="sr-only">Super Effective</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="sr-only">Weak</span></th>
+            <td><div class="sector sr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="poison satellite type-icon"><title>Poison</title><use width="100%" height="100%" href="img/type-icons.svg#poison-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="steel satellite type-icon"><title>Steel</title><use width="100%" height="100%" href="img/type-icons.svg#steel-symbol"/></svg></li></ul></div></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Neutral</span></th>
+            <td><div class="sector nr"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="fire satellite type-icon"><title>Fire</title><use width="100%" height="100%" href="img/type-icons.svg#fire-symbol"/></svg></li></ul></div></td>
+            <td><span class="sr-only"><span class="nn-count">…11…</span></span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="sr-only">Resists</span></th>
+            <td></td>
+            <td><div class="sector rn"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="bug satellite type-icon"><title>Bug</title><use width="100%" height="100%" href="img/type-icons.svg#bug-symbol"/></svg></li></ul></div></td>
+            <td><div class="sector rs"><ul class="type-list"><li><svg role="img" viewBox="0 0 10 10" class="fighting satellite type-icon"><title>Fighting</title><use width="100%" height="100%" href="img/type-icons.svg#fighting-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="dark satellite type-icon"><title>Dark</title><use width="100%" height="100%" href="img/type-icons.svg#dark-symbol"/></svg></li><li><svg role="img" viewBox="0 0 10 10" class="dragon satellite immune type-icon"><title>Dragon (immune)</title><use width="100%" height="100%" href="img/type-icons.svg#dragon-symbol"/></svg></li></ul></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li aria-hidden="true" class="legend">
+      <figure class="defense">
+        <svg role="img" viewBox="0 0 100 100" class="main-type normal">
+          <title>Defending</title>
+          <svg x="18" y="18" width="64" height="64">
+            <foreignObject width="100%" height="100%"><div class="type-icon normal"></div></foreignObject>
+            <use href="#shield-symbol"/>
+          </svg>
+          <use href="#defending-ring"/>
+        </svg>
+        <div class="sector rs"></div>
+        <div class="sector rn"></div>
+        <div class="sector rr"></div>
+        <div class="sector ss"></div>
+        <div class="sector sn"></div>
+        <div class="sector sr"></div>
+        <p class="label super-effective">&times;1.6</p>
+        <p class="label resisted">&times;0.625</p>
+        <p class="label immune">
+          <svg role="img" viewBox="0 0 128 128" class="type-icon normal satellite immune">
+            <title>immune</title>
+            <use href="#sword-symbol"/>
+          </svg>
+          &times;0.39
+        </p>
+      </figure>
+    </li>
+    <li aria-hidden="true" class="legend">
+      <figure class="offense">
+        <svg role="img" viewBox="0 0 100 100" class="main-type normal">
+          <title>Attacking</title>
+          <svg x="18" y="18" width="64" height="64">
+            <foreignObject width="100%" height="100%"><div class="type-icon normal"></div></foreignObject>
+            <use href="#sword-symbol"/>
+          </svg>
+          <use href="#attacking-ring"/>
+        </svg>
+        <div class="sector sr"></div>
+        <div class="sector nr"></div>
+        <div class="sector rr"></div>
+        <div class="sector ss"></div>
+        <div class="sector ns"></div>
+        <div class="sector rs"></div>
+        <p class="label super-effective">&times;1.6</p>
+        <p class="label resisted">&times;0.625</p>
+        <p class="label immune">
+          &times;0.39
+          <svg role="img" viewBox="0 0 128 128" class="type-icon normal satellite immune">
+            <title>immune</title>
+            <use href="#shield-symbol"/>
+          </svg>
+        </p>
+      </figure>
+    </li>
+  
+  </ul>
+</body>
+</html>
