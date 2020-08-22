@@ -1,0 +1,14 @@
+{
+  "name": "pokemon-type-chart",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "index": "node index.js > public/type-chart-v1.html",
+    "index2": "node index2.js > public/index.html",
+    "localhost": "http-server -a 127.0.0.1"
+  },
+  "author": "",
+  "license": "ISC"
+}
