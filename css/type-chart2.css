@@ -81,7 +81,7 @@ svg.defs, /* can't use display: none because it makes markers not work */
 }
 
 /* targeting 19.5:9 = 2.16 aspect ratio */
-@media (max-aspect-ratio: 49/100) {
+@media (max-aspect-ratio: 48/100) {
     .type-charts-list > li {
         margin: -8.5% -7%;
     }
