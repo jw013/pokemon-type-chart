@@ -36,7 +36,8 @@ svg.defs, /* can't use display: none because it makes markers not work */
 
 .type-charts-list {
     display: grid;
-    margin: 0 8.5vmin;
+    margin: 0 auto;
+    max-width: min(47vh, 96vw); /* .47 = (3*86)/(7*77) - fudge factor */
     position: absolute;
     top: 0;
     left: 0;
@@ -73,21 +74,10 @@ svg.defs, /* can't use display: none because it makes markers not work */
     height: 0;
 }
 
-/* in-between 9:16 and 9:18 aspect ratio */
-@media (max-aspect-ratio: 10/18) {
-    .type-charts-list {
-        margin: 0 3vmin;
-    }
-}
-
-/* targeting 19.5:9 = 2.16 aspect ratio */
+/* 9:19.5 = .462 aspect ratio */
 @media (max-aspect-ratio: 48/100) {
     .type-charts-list > li {
         margin: -8.5% -7%;
-    }
-
-    .type-charts-list {
-        margin: 0 2vmin;
     }
 }
 
