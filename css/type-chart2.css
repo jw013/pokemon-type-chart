@@ -276,16 +276,19 @@ use.sr, use.nr, use.rr {
 
 .legend {
     font-size: 1.6em;
-    margin-bottom: 0;
 }
 
-/* reduce height to avoid vertical scrollbar */
+/* trim height from bottom row to avoid vertical scrollbar */
 .legend::before {
     padding-bottom: 88.5%;
 }
-
+li.legend {
+    margin-bottom: 0;
+}
 figure {
-    grid-area: 1 / 1;
+    position: absolute;
+    padding-bottom: 100%;
+    width: 100%;
 }
 
 /* circular background region */
