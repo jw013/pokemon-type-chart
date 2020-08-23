@@ -53,7 +53,7 @@ function singleTypeChartToTable(chart) {
   <caption>
     <svg role="img" viewBox="0 0 100 100" class="main-type">
       <title>${typeTitle}</title>
-      <svg x="18" y="18" width="64" height="64">
+      <svg x="20" y="20" width="60" height="60">
         <foreignObject width="100%" height="100%"><div class="type-icon ${typeLower}"></div></foreignObject>
         <use href="img/type-icons.svg#${typeLower}-symbol"/>
       </svg>
@@ -104,15 +104,15 @@ function* generatePage(splitTypeChart) {
 <body>
   <svg aria-hidden="true" class="defs">
     <defs>
-      <path id="defending-resist-curve" class="r_" d="M-12.246 29.564 A32 32 0 0 0 29.564 -12.246" stroke-width="4"/>
-      <path id="attacking-resist-curve" class="_r" d="M16.838 40.561 A44 44 0 0 1 -40.561 -16.838" stroke-width="4"/>
-      <marker id="resisted-arrow" markerWidth="2" markerHeight="4" refX="2" refY="2" orient="auto-start-reverse">
-        <polygon points="0,0 2,0.8 2,3.2 0,4 .5,2"/>
+      <path id="defending-resist-curve" d="M-11.481 27.716 A30 30 0 0 0 27.716-11.481" stroke-width="4"/>
+      <path id="attacking-resist-curve" d="M16.073 38.803 A42 42 0 0 1 -38.803 -16.073" stroke-width="4"/>
+      <marker id="resisted-arrow" markerWidth="2" markerHeight="5" refX="2" refY="2.5" orient="auto-start-reverse">
+        <polygon points="0,0 2,0.8333 2,4.1667 0,5 0.75,2.5"/>
       </marker>
-      <marker id="super-effective-arrow" markerWidth="5" markerHeight="4" refX="2" refY="2" orient="auto-start-reverse">
-        <polygon points="0,0 5,2 0,4 .5,2"/>
+      <marker id="super-effective-arrow" markerWidth="6" markerHeight="5" refX="2" refY="2.5" orient="auto-start-reverse">
+        <polygon points="0,0 6,2.5 0,5 .75,3"/>
       </marker>
-      <line id="matchup-line" x1="0" x2="0" y1="32" y2="44" stroke-width="2"/>
+      <line id="matchup-line" x1="0" x2="0" y1="30" y2="42" stroke-width="2"/>
     </defs>
     <symbol id="matchup-ring" viewBox="-50 -50 100 100">
       <use href="#defending-resist-curve"/>
@@ -168,7 +168,7 @@ ${singleTypeChartToTable(chart).replace(/^/mg, '      ')}
       <figure class="defense">
         <svg role="img" viewBox="0 0 100 100" class="main-type normal">
           <title>Defending</title>
-          <svg x="18" y="18" width="64" height="64">
+          <svg x="20" y="20" width="60" height="60">
             <foreignObject width="100%" height="100%"><div class="type-icon normal"></div></foreignObject>
             <use href="#shield-symbol"/>
           </svg>
@@ -195,7 +195,7 @@ ${singleTypeChartToTable(chart).replace(/^/mg, '      ')}
       <figure class="offense">
         <svg role="img" viewBox="0 0 100 100" class="main-type normal">
           <title>Attacking</title>
-          <svg x="18" y="18" width="64" height="64">
+          <svg x="20" y="20" width="60" height="60">
             <foreignObject width="100%" height="100%"><div class="type-icon normal"></div></foreignObject>
             <use href="#sword-symbol"/>
           </svg>
