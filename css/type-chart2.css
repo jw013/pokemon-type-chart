@@ -440,8 +440,12 @@ figure > .sector::before {
         border-color:  silver;
     }
 
+    #defending-resist-curve, #attacking-resist-curve {
+        stroke: silver;
+    }
+
     .label {
-        background: dimgray;
+        background: #444;
     }
 
     figure > .sector::before {
