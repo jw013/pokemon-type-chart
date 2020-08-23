@@ -429,3 +429,34 @@ figure > .sector::before {
 .label {
     background: lightgray;
 }
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: black;
+        color: white;
+    }
+
+    .satellite.immune {
+        border-color:  silver;
+    }
+
+    .label {
+        background: dimgray;
+    }
+
+    figure > .sector::before {
+        background: gray;
+    }
+
+    marker {
+        fill: white;
+    }
+
+    #matchup-line {
+        stroke: white;
+    }
+
+    .label > .satellite {
+        fill: white;
+    }
+}
