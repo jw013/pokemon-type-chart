@@ -75,6 +75,12 @@ svg.defs, /* can't use display: none because it makes markers not work */
 }
 
 /* TODO: figure out a desktop layout e.g. 16:9 */
+@media (min-aspect-ratio: 1/1) {
+    .type-charts-list {
+        max-width: 92vw;
+    }
+}
+
 
 /* all the contents of this table are either screen-reader only or absolutely positioned
  * Set its size to something small and fixed so it doesn't affect the size or aspect ratio
