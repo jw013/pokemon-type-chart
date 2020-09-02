@@ -109,9 +109,13 @@ function* generatePage(splitTypeChart) {
       <marker id="super-effective-arrow" markerWidth="6" markerHeight="5" refX="2" refY="2.5" orient="auto-start-reverse">
         <polygon points="0,0 6,2.5 0,5 .75,3"/>
       </marker>
+      <marker id="resisted-arrow" markerWidth="2" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+        <rect width="2" height="5"/>
+      </marker>
       <line id="matchup-line" x1="0" x2="0" y1="30" y2="42" stroke-width="2"/>
+      <line id="legend-matchup-line" x1="9" y1="5" x2="21" y2="5" stroke-width="2"/>
     </defs>
-    <symbol id="matchup-ring" viewBox="-50 -50 100 100">
+    <symbol id="matchup-ring" class="matchup-ring" viewBox="-50 -50 100 100">
       <use href="#defending-resist-curve"/>
       <use href="#attacking-resist-curve"/>
       <use class="nr" href="#matchup-line"/>
@@ -122,32 +126,6 @@ function* generatePage(splitTypeChart) {
       <use class="rs" href="#matchup-line"/>
       <use class="rn" href="#matchup-line"/>
       <use class="rr" href="#matchup-line"/>
-    </symbol>
-    <symbol id="defending-ring" viewBox="-50 -50 100 100">
-      <use href="#defending-resist-curve"/>
-      <use class="sr" href="#matchup-line"/>
-      <use class="sn" href="#matchup-line"/>
-      <use class="ss" href="#matchup-line"/>
-      <use class="rs" href="#matchup-line"/>
-      <use class="rn" href="#matchup-line"/>
-      <use class="rr" href="#matchup-line"/>
-    </symbol>
-    <symbol id="attacking-ring" viewBox="-50 -50 100 100">
-      <use href="#attacking-resist-curve"/>
-      <use class="nr" href="#matchup-line"/>
-      <use class="sr" href="#matchup-line"/>
-      <use class="ss" href="#matchup-line"/>
-      <use class="ns" href="#matchup-line"/>
-      <use class="rs" href="#matchup-line"/>
-      <use class="rr" href="#matchup-line"/>
-    </symbol>
-    <symbol id="sword-symbol" viewBox="0 0 256 256">
-      <path d="m123.5 187.65c0 2.4853 2.0147 4.5 4.5 4.5s4.5-2.0147 4.5-4.5c-0.1666-5.7723-0.33366-12.674-0.50015-18.46-1.3282 0.14841-2.6636 0.31147-4 0.31139-1.3365-5.6e-4 -2.6719-0.16429-4-0.31339-0.11565 6.3453-0.34647 12.997-0.49985 18.462z"/>
-      <path d="m110.2 147.5-8.8984 6.4668a33 33 0 0 0 26.697 13.602 33 33 0 0 0 26.697-13.602l-8.8984-6.4668a22 22 0 0 1-17.799 9.0684 22 22 0 0 1-17.799-9.0684z"/>
-      <path d="m128 63.851-10.021 19.158v62.211l-3.4141 3.6337a19 20.222 0 0 0 13.436 5.9224 19 20.222 0 0 0 13.436-5.9224l-3.4141-3.6337v-62.211z"/>
-    </symbol>
-    <symbol id="shield-symbol" viewBox="0 0 256 256">
-      <path d="m128 74c-12 8-37 12-54 12 5.5248 73.61 36 100 54 108 17-8 48.475-34.39 54-108-17 0-42-4-54-12z"/>
     </symbol>
   </svg>
   <h1>Pokémon Type Effectiveness</h1>
@@ -162,60 +140,61 @@ ${singleTypeChartToTable(chart).replace(/^/mg, '      ')}
 
   yield `
     <li aria-hidden="true" class="legend">
-      <figure class="defense">
-        <svg role="img" viewBox="0 0 100 100" class="main-type normal">
-          <title>Defending</title>
-          <svg x="20" y="20" width="60" height="60">
-            <foreignObject width="100%" height="100%"><div class="type-icon normal"></div></foreignObject>
-            <use href="#shield-symbol"/>
-          </svg>
-          <use href="#defending-ring"/>
+      <figure>
+        <span>&times;1.6</span>
+        <svg role="img" viewBox="0 0 30 10">
+          <title>Mutual weakness</title>
+          <use class="ss" href="#legend-matchup-line"/>
         </svg>
-        <div class="sector rs"></div>
-        <div class="sector rn"></div>
-        <div class="sector rr"></div>
-        <div class="sector ss"></div>
-        <div class="sector sn"></div>
-        <div class="sector sr"></div>
-        <p class="label super-effective">&times;1.6</p>
-        <p class="label resisted">&times;0.625</p>
-        <p class="label immune">
-          <svg role="img" viewBox="0 0 128 128" class="type-icon normal satellite immune">
-            <title>immune</title>
-            <use href="#sword-symbol"/>
-          </svg>
-          &times;0.39
-        </p>
+        <span>&times;1.6</span>
+        <span>&times;1</span>
+        <svg role="img" viewBox="0 0 30 10">
+          <title>Super Effective</title>
+          <use class="ns" href="#legend-matchup-line"/>
+        </svg>
+        <span>&times;1.6</span>
+        <span>&times;0.625</span>
+        <svg role="img" viewBox="0 0 30 10">
+          <title>Dominates</title>
+          <use class="rs" href="#legend-matchup-line"/>
+        </svg>
+        <span>&times;1.6</span>
+        <span>&times;0.625</span>
+        <svg role="img" viewBox="0 0 30 10">
+          <title>Resistance</title>
+          <use class="rn" href="#legend-matchup-line"/>
+        </svg>
+        <span>&times;1</span>
+        <span>&times;0.625</span>
+        <svg role="img" viewBox="0 0 30 10">
+          <title>Mutual Resistance</title>
+          <use class="rr" href="#legend-matchup-line"/>
+        </svg>
+        <span>&times;0.625</span>
       </figure>
     </li>
     <li aria-hidden="true" class="legend">
-      <figure class="offense">
-        <svg role="img" viewBox="0 0 100 100" class="main-type normal">
-          <title>Attacking</title>
-          <svg x="20" y="20" width="60" height="60">
-            <foreignObject width="100%" height="100%"><div class="type-icon normal"></div></foreignObject>
-            <use href="#sword-symbol"/>
-          </svg>
-          <use href="#attacking-ring"/>
+      <figure>
+        <span class="align">&times;1</span>
+        <svg role="img" viewBox="0 0 30 10">
+          <title>Resistance</title>
+          <use class="nr" href="#legend-matchup-line"/>
         </svg>
-        <div class="sector sr"></div>
-        <div class="sector nr"></div>
-        <div class="sector rr"></div>
-        <div class="sector ss"></div>
-        <div class="sector ns"></div>
-        <div class="sector rs"></div>
-        <p class="label super-effective">&times;1.6</p>
-        <p class="label resisted">&times;0.625</p>
-        <p class="label immune">
-          &times;0.39
-          <svg role="img" viewBox="0 0 128 128" class="type-icon normal satellite immune">
-            <title>immune</title>
-            <use href="#shield-symbol"/>
-          </svg>
-        </p>
+        <span><svg role="img" viewBox="0 0 1 1" class="type-icon immune"></svg> &times;0.39</span>
+        <span class="align">&times;0.39</span>
+        <svg role="img" viewBox="0 0 30 10">
+          <title>Resistance</title>
+          <use class="rn" href="#legend-matchup-line"/>
+        </svg>
+        <span><svg role="img" viewBox="0 0 1 1" class="type-icon immune"></svg> &times;1</span>
+        <span class="align">&times;0.39</span>
+        <svg role="img" viewBox="0 0 30 10">
+          <title>Resistance</title>
+          <use class="rr" href="#legend-matchup-line"/>
+        </svg>
+        <span><svg role="img" viewBox="0 0 1 1" class="type-icon immune"></svg> &times;0.39</span>
       </figure>
-    </li>
-  `
+    </li>`;
 
   yield `
   </ul>
