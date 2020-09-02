@@ -37,7 +37,7 @@ svg.defs, /* can't use display: none because it makes markers not work */
 .type-charts-list {
     display: grid;
     margin: 0 auto;
-    max-width: min(47vh, 96vw); /* .47 = (3*86)/(7*77) - fudge factor */
+    max-width: min(50vh, 96vw); /* .5 = (3*90)/(7*77) - fudge factor */
     position: absolute;
     top: 0;
     left: 0;
@@ -62,7 +62,7 @@ svg.defs, /* can't use display: none because it makes markers not work */
     position: relative; /* use as ancestor containing box for all descendants */
     overflow: hidden;
     display: grid;
-    margin: min(0%, max(-11.5%, (100vh - (96vw * 689 / 258)) / 13)) -7%; /* hexagonal circle packing */
+    margin: min(0%, max(-11.5%, (100vh - (96vw * 689 / 255)) / 13)) -5%; /* hexagonal circle packing */
 }
 
 /* square aspect ratio */
