@@ -176,14 +176,6 @@ use.rs, use.ns, use.ss {
     marker-end: url(#super-effective-arrow);
 }
 
-use.rs, use.rn, use.rr {
-    marker-start: url(#resisted-arrow);
-}
-
-use.sr, use.nr, use.rr {
-    marker-end: url(#resisted-arrow);
-}
-
 /* Transform table cells into sectors of a circle
  * Overview:
  * - position top left corner at center of circle
