@@ -4,7 +4,7 @@
     list-style: none;
 }
 
-td, th, table, ul, li, figure, .label {
+td, th, table, ul, li, figure {
     padding: 0;
     margin: 0;
 }
@@ -37,7 +37,7 @@ svg.defs, /* can't use display: none because it makes markers not work */
 .type-charts-list {
     display: grid;
     margin: 0 auto;
-    max-width: min(50vh, 98vw); /* .51 = (3*92)/(7*77) - fudge factor */
+    max-width: min(50vh, 98vw); /* .5 = (3*92)/(7*77) - fudge factor */
     position: absolute;
     top: 0;
     left: 0;
@@ -112,18 +112,14 @@ div.type-icon {
     transform: scale(1.8);
 }
 
-use[href='#sword-symbol'] {
-    transform-origin: center;
-    transform: scale(1.2) rotate(45deg);
-}
-
-.satellite > use[href='#sword-symbol'] {
-    transform: scale(2.16) rotate(45deg);
+.immune {
+    /* don't override border-color */
+    border-width: 3px;
+    border-style: solid;
 }
 
 .satellite.immune {
     margin: -2px;
-    border: 3px solid;
     padding: 1px;
 }
 
@@ -160,21 +156,33 @@ use[href='#sword-symbol'] {
  *  - letters stand for: Resist, Neutral, Immune
  */
 
-use.nr { transform: rotate(45deg); }
-use.sr { transform: rotate(90deg); }
-use.sn { transform: rotate(135deg); }
-use.ss { transform: rotate(180deg); }
-use.ns { transform: rotate(225deg); }
-use.rs { transform: rotate(270deg); }
-use.rn { transform: rotate(315deg); }
+.matchup-ring > use.nr { transform: rotate(45deg); }
+.matchup-ring > use.sr { transform: rotate(90deg); }
+.matchup-ring > use.sn { transform: rotate(135deg); }
+.matchup-ring > use.ss { transform: rotate(180deg); }
+.matchup-ring > use.ns { transform: rotate(225deg); }
+.matchup-ring > use.rs { transform: rotate(270deg); }
+.matchup-ring > use.rn { transform: rotate(315deg); }
 
-use.ss, use.sn, use.sr {
+use.ss, use.sn, use.sr, line.ss {
     marker-start: url(#super-effective-arrow);
 }
 
-use.rs, use.ns, use.ss {
+use.rs, use.ns, use.ss, line.ss {
     marker-end: url(#super-effective-arrow);
 }
+
+use[href="#legend-matchup-line"].rs,
+use[href="#legend-matchup-line"].rn,
+use[href="#legend-matchup-line"].rr {
+    marker-start: url(#resisted-arrow);
+}
+
+use[href="#legend-matchup-line"].nr,
+use[href="#legend-matchup-line"].rr {
+    marker-end: url(#resisted-arrow);
+}
+
 
 /* Transform table cells into sectors of a circle
  * Overview:
@@ -262,12 +270,13 @@ use.rs, use.ns, use.ss {
     grid-area: 7 / 2;
 }
 
+/* because we skipped that cell the nth-child counts are out of alignment on the second legend */
 .type-charts-list > li:nth-child(n+19) {
     top: auto;
 }
 
 .legend {
-    font-size: 1.6em;
+    font-size: 1.4em;
 }
 
 /* trim height from bottom row to avoid vertical scrollbar */
@@ -277,75 +286,34 @@ use.rs, use.ns, use.ss {
 li.legend {
     margin-bottom: 0;
 }
+
 figure {
     position: absolute;
-    padding-bottom: 100%;
     width: 100%;
+    height: 113%; /* 1/88.5% to make it square again */
+    display: grid;
+    grid-template-columns: auto 3.9em auto;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: .5em 0.5ex;
 }
 
-/* circular background region */
-figure > .sector::before {
+/* add strut to guarantee alignment with the span > .type-icon below */
+span.align::before {
     content: '';
-    display: block;
-    width: 39%;
-    padding-bottom: 39%;
-    border-radius: 0 0 100% 0;
-    /* undo parent skew */
-    transform-origin: top left;
-    transform: skewY(-45deg);
+    display: inline-block;
+    width: 1px;
+    margin-right: -1px;
+    vertical-align: text-bottom;
+    height: 1.3em;
 }
 
-.label {
-    position: absolute;
-    display: block;
-    width: max-content;
-    padding: .2ex .2em;
-    border-radius: .6ex;
-}
-
-.label.super-effective {
-    top: 25%;
-    transform: translate(-50%, -50%);
-}
-.offense > .label.super-effective {
-    left: 70%;
-}
-.defense > .label.super-effective {
-    left: 30%;
-}
-
-.label.resisted {
-    top: 63%;
-}
-.offense > .label.resisted {
-    right: 67%;
-}
-.defense > .label.resisted {
-    left: 67%;
-}
-
-.label.immune {
-    top: 76%;
-}
-.defense > .label.immune {
-    left: calc(50% - .8em - 2px);
-}
-.offense > .label.immune {
-    right: calc(50% - .8em - 2px);
-}
-
-.label > svg {
-    width: 1.2em;
+span > .type-icon {
+    box-sizing: border-box;
+    width: 1.3em;
     display: inline-block;
     vertical-align: text-bottom;
-}
-
-#attacking-ring > use {
-    marker-start: none;
-}
-
-#defending-ring > use {
-    marker-end: none;
 }
 
 /* --- colors --- */
@@ -384,11 +352,7 @@ body {
     fill: var(--type-color);
 }
 
-.label > .satellite {
-    fill: #2f2f2f;
-}
-
-.satellite.immune {
+.immune {
     border-color:  darkslategray;
 }
 
@@ -400,7 +364,7 @@ div.type-icon {
     background: var(--type-color);
 }
 
-#matchup-line {
+#matchup-line, #legend-matchup-line {
     stroke: black;
 }
 
@@ -414,21 +378,13 @@ marker {
     fill: none;
 }
 
-figure > .sector::before {
-    background: #a9a9a9;
-}
-
-.label {
-    background: lightgray;
-}
-
 @media (prefers-color-scheme: dark) {
     body {
         background: black;
         color: white;
     }
 
-    .satellite.immune {
+    .immune {
         border-color:  silver;
     }
 
@@ -436,23 +392,11 @@ figure > .sector::before {
         stroke: silver;
     }
 
-    .label {
-        background: #444;
-    }
-
-    figure > .sector::before {
-        background: gray;
-    }
-
     marker {
         fill: white;
     }
 
-    #matchup-line {
+    #matchup-line, #legend-matchup-line {
         stroke: white;
-    }
-
-    .label > .satellite {
-        fill: white;
     }
 }
